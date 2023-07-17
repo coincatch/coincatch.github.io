@@ -1,0 +1,2659 @@
+
+<!doctype html>
+<html>
+<head>
+  <link href="../../images/cc_new_log-55091893.png" rel="icon" type="image/png" />
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>bitget API Docs</title>
+
+  <style>
+    .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+
+    .highlight .err {
+      color: #fff;
+    }
+    header.top-nav {
+      position:fixed;
+      display:flex;
+      flex:1;
+      width:100%;
+      z-index:100;
+      padding: 0 26px;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+      align-items: center;
+      background: #161B27;
+      -webkit-box-shadow: 0 1px 0 0 #000;
+              box-shadow: 0 1px 0 0 #000;
+    }
+    div.top-menu{
+      display:flex;
+      flex: 1;
+    }
+    a.logo-link{
+      line-height: 50px;
+    }
+    img.logo {
+      width: 109px;
+      height: 33px;
+      margin-top: 10px;
+      vertical-align: middle;
+    }
+    .con {
+      display: flex;
+      top: 0;
+      height: 55px;
+      margin: 0 0 0 96px;
+      padding: 0;
+      list-style: none;
+      text-align: center;
+    }
+
+    .con li{
+      text-align: center;
+      line-height: 55px;
+      border:0 solid #000;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+    }
+
+    .con a {
+      display: inline-block;
+      color: #B0B8DB;
+      font-size: 16px;
+      text-decoration: none;
+      line-height: 53px;
+      padding: 0 20px;
+    }
+
+    .con a.selected {
+      border-bottom: 2px solid transparent;
+      border-color: #C7E800;
+      color: #fff;
+    }
+
+    a.international{
+
+
+      width: 78px;
+      height: 26px;
+      line-height: 26px;
+      text-align: center;
+      border: 1px solid #383F66;
+      color: #ADC1D5;
+      text-decoration: none;
+      border-radius: 3px;
+      -webkit-transition: all 300ms;
+      transition: all 300ms;
+    }
+
+    @media  only screen and (max-width: 768px) {
+
+        a.logo-link {
+          display: none;
+        }
+
+        .con {
+          display: flex;
+          height: 55px;
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          text-align: center;
+          width: 100%;
+          max-width: 268px;
+          overflow-x: scroll;
+          overflow-y: hidden;
+        }
+
+        .con li{
+          width: 100%;
+        }
+
+        .con a{
+          display: inline-block;
+          width: 100%;
+          word-break: keep-all;
+        }
+
+        a.international{
+          border: none;
+        }
+
+        .content{
+          width: 100%;
+          overflow-x: hidden;
+        }
+
+        .lang-selector a.active {
+           display: none;
+        }
+
+       .toc-wrapper.open{
+          top: 0;
+          z-index: 100;
+       }
+    }
+  </style>
+  <link href="../../stylesheets/screen-739a12e2.css" rel="stylesheet" media="screen" />
+  <link href="../../stylesheets/print-f1a026e8.css" rel="stylesheet" media="print" />
+    <script src="../../javascripts/all-0f81ae09-bf99ba08.js"></script>
+</head>
+<header class="top-nav">
+  <div class="top-menu">
+      <a href="https://www.bitget.com/zh-CN/" class="logo-link" target="_self">
+        <img src="../../images/log-jk382-eb1657ff.svg" class="logo" alt="" />
+      </a>
+    <ul class="con">
+         <li><a id="spot" data-text="现货" >Spot</a></li>
+         <li><a id="mix" data-text="专业合约" >FuturesⓂ(USDT/Coin)</a></li>
+    </ul>
+  </div>
+  <a class="international" id="international" href="javascript:void(0);">English</a>
+</header>
+
+<body class="zh zh_spot zh_spot_index" data-languages="[&quot;console&quot;]">
+<a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="../../images/navbar-cad8cdcb.png" alt="" />
+      </span>
+</a>
+<div class="toc-wrapper">
+    <div class="lang-selector">
+          <a href="#" data-language-name="console">console</a>
+    </div>
+    <div class="search">
+      <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+    <ul class="search-results"></ul>
+  <ul id="toc" class="toc-list-h1">
+      <li>
+        <a href="#welcome" class="toc-h1 toc-link" data-title="Welcome">Welcome</a>
+          <ul class="toc-list-h2">
+              <li>
+                <a href="#b8627ec132" class="toc-h2 toc-link" data-title="近期接口变更预告">近期接口变更预告</a>
+              </li>
+          </ul>
+      </li>
+      <li>
+        <a href="#185368440e" class="toc-h1 toc-link" data-title="更新日志">更新日志</a>
+      </li>
+      <li>
+        <a href="#5ea2e0cde2" class="toc-h1 toc-link" data-title="简介">简介</a>
+          <ul class="toc-list-h2">
+              <li>
+                <a href="#api" class="toc-h2 toc-link" data-title="API 简介">API 简介</a>
+              </li>
+              <li>
+                <a href="#7b3af22e1f" class="toc-h2 toc-link" data-title="更新关注">更新关注</a>
+              </li>
+              <li>
+                <a href="#152d3db758" class="toc-h2 toc-link" data-title="联系我们">联系我们</a>
+              </li>
+          </ul>
+      </li>
+      <li>
+        <a href="#25e54147de" class="toc-h1 toc-link" data-title="快速入门">快速入门</a>
+          <ul class="toc-list-h2">
+              <li>
+                <a href="#c1ae0a8486" class="toc-h2 toc-link" data-title="接入准备">接入准备</a>
+              </li>
+              <li>
+                <a href="#5076603a3e" class="toc-h2 toc-link" data-title="接口类型">接口类型</a>
+              </li>
+              <li>
+                <a href="#12907e94be" class="toc-h2 toc-link" data-title="访问限制">访问限制</a>
+              </li>
+              <li>
+                <a href="#api-2" class="toc-h2 toc-link" data-title="API域名">API域名</a>
+              </li>
+              <li>
+                <a href="#api-3" class="toc-h2 toc-link" data-title="API公开参数">API公开参数</a>
+                  <ul class="toc-list-h3">
+                      <li>
+                        <a href="#grouptype" class="toc-h3 toc-link" data-title="groupType(账单流水大类型)">groupType(账单流水大类型)</a>
+                      </li>
+                      <li>
+                        <a href="#biztype" class="toc-h3 toc-link" data-title="bizType(账单流水业务类型)">bizType(账单流水业务类型)</a>
+                      </li>
+                      <li>
+                        <a href="#status" class="toc-h3 toc-link" data-title="status(充提订单状态)">status(充提订单状态)</a>
+                      </li>
+                      <li>
+                        <a href="#type" class="toc-h3 toc-link" data-title="type(用户提币地址查询)">type(用户提币地址查询)</a>
+                      </li>
+                      <li>
+                        <a href="#fromtype-totype" class="toc-h3 toc-link" data-title="fromType,toType(转入类型，转出类型)">fromType,toType(转入类型，转出类型)</a>
+                      </li>
+                      <li>
+                        <a href="#enterpointsource" class="toc-h3 toc-link" data-title="enterPointSource">enterPointSource</a>
+                      </li>
+                      <li>
+                        <a href="#accounttype" class="toc-h3 toc-link" data-title="accountType">accountType</a>
+                      </li>
+                  </ul>
+              </li>
+              <li>
+                <a href="#api-4" class="toc-h2 toc-link" data-title="API验证">API验证</a>
+              </li>
+              <li>
+                <a href="#8ba46c43fe" class="toc-h2 toc-link" data-title="签名">签名</a>
+              </li>
+              <li>
+                <a href="#90c3a93e7c" class="toc-h2 toc-link" data-title="加密示例">加密示例</a>
+              </li>
+              <li>
+                <a href="#d9ed27b09f" class="toc-h2 toc-link" data-title="请求交互">请求交互</a>
+              </li>
+              <li>
+                <a href="#9a3f8fe408" class="toc-h2 toc-link" data-title="标准规范">标准规范</a>
+              </li>
+          </ul>
+      </li>
+      <li>
+        <a href="#restapi" class="toc-h1 toc-link" data-title="RestAPI">RestAPI</a>
+          <ul class="toc-list-h2">
+              <li>
+                <a href="#5a0fbdfb96" class="toc-h2 toc-link" data-title="基础配置接口">基础配置接口</a>
+                  <ul class="toc-list-h3">
+                      <li>
+                        <a href="#3f1907847c" class="toc-h3 toc-link" data-title="获取服务器时间">获取服务器时间</a>
+                      </li>
+                      <li>
+                        <a href="#0768e744b5" class="toc-h3 toc-link" data-title="币种基础信息">币种基础信息</a>
+                      </li>
+                  </ul>
+              </li>
+              <li>
+                <a href="#ec5249e068" class="toc-h2 toc-link" data-title="钱包接口">钱包接口</a>
+                  <ul class="toc-list-h3">
+                      <li>
+                        <a href="#1045de04a1" class="toc-h3 toc-link" data-title="划转">划转</a>
+                      </li>
+                      <li>
+                        <a href="#263e170b4c" class="toc-h3 toc-link" data-title="获取充币地址">获取充币地址</a>
+                      </li>
+                      <li>
+                        <a href="#096be69702" class="toc-h3 toc-link" data-title="提币">提币</a>
+                      </li>
+                      <li>
+                        <a href="#6eb422678c" class="toc-h3 toc-link" data-title="内部提币">内部提币</a>
+                      </li>
+                      <li>
+                        <a href="#db22942d47" class="toc-h3 toc-link" data-title="获取提币记录">获取提币记录</a>
+                      </li>
+                      <li>
+                        <a href="#e2a027ceb6" class="toc-h3 toc-link" data-title="获取充值记录">获取充值记录</a>
+                      </li>
+                  </ul>
+              </li>
+              <li>
+                <a href="#df03e301d5" class="toc-h2 toc-link" data-title="账户接口">账户接口</a>
+                  <ul class="toc-list-h3">
+                      <li>
+                        <a href="#apikey" class="toc-h3 toc-link" data-title="获取ApiKey信息">获取ApiKey信息</a>
+                      </li>
+                      <li>
+                        <a href="#6f78777a98" class="toc-h3 toc-link" data-title="获取账户资产">获取账户资产</a>
+                      </li>
+                      <li>
+                        <a href="#23f9acd1d3" class="toc-h3 toc-link" data-title="获取账单流水">获取账单流水</a>
+                      </li>
+                      <li>
+                        <a href="#b0c7e2b4a5" class="toc-h3 toc-link" data-title="获取划转记录">获取划转记录</a>
+                      </li>
+                  </ul>
+              </li>
+          </ul>
+      </li>
+      <li>
+        <a href="#restapi-2" class="toc-h1 toc-link" data-title="RestAPI错误">RestAPI错误</a>
+          <ul class="toc-list-h2">
+              <li>
+                <a href="#5699b4eac7" class="toc-h2 toc-link" data-title="公共错误码">公共错误码</a>
+              </li>
+          </ul>
+      </li>
+  </ul>
+</div>
+<div class="page-wrapper">
+  <div class="dark-box"></div>
+  <div class="content">
+    <!---
+Clipboard script
+-->
+
+<script src="../../dist/clipboard.min-f99f064d-3bd90afc.js"></script>
+
+<script>
+var clipboard = new ClipboardJS('.clipboard_button');
+
+clipboard.on('success', function(e) {
+    console.log(e);
+});
+
+clipboard.on('error', function(e) {
+    console.log(e);
+});
+</script>
+<h1 id='welcome'>Welcome</h1>
+<p>欢迎来到CoinCatch API文档！点击<a href="#5ea2e0cde2">这里</a>直接开始</p>
+<h2 id='b8627ec132'>近期接口变更预告</h2>
+<table><thead>
+<tr>
+<th style="text-align: center"><strong>编号</strong></th>
+<th style="text-align: center"><strong>接口</strong></th>
+<th style="text-align: center"><strong>上线日期</strong></th>
+<th style="text-align: center"><strong>功能描述</strong></th>
+</tr>
+</thead><tbody>
+</tbody></table>
+<h1 id='185368440e'>更新日志</h1>
+<p><strong>2023年05月25日</strong></p>
+
+<ul>
+<li>API 文档上线</li>
+</ul>
+<h1 id='5ea2e0cde2'>简介</h1><h2 id='api'>API 简介</h2>
+<p>欢迎使用CoinCatch开发者文档！</p>
+
+<p>此文档是CoinCatch API的唯一官方文档，CoinCatch API提供的功能会在此持续更新，请大家及时关注。</p>
+
+<p>你可以通过点击上方菜单来切换获取不同业务的API，还可通过点击右上方的语言按钮来切换文档语言。</p>
+
+<p>文档右侧是针对请求参数以及响应结果的示例。</p>
+<h2 id='7b3af22e1f'>更新关注</h2>
+<p>关于API新增、更新、下线等信息CoinCatch会提前发布公告进行通知，建议您关注和订阅我们的公告，及时获取相关信息。</p>
+<h2 id='152d3db758'>联系我们</h2>
+<p>使用过程中如有问题或者建议，您可选择以下方式联系我们：</p>
+
+<ul>
+<li>发送邮件至API@coincatch.com。</li>
+</ul>
+<h1 id='25e54147de'>快速入门</h1><h2 id='c1ae0a8486'>接入准备</h2>
+<p>如需使用API ，请先<a href='https://www.coincatch.com'>登录</a>网页端，完成API key的申请和权限配置，再据此文档详情进行开发和交易。</p>
+
+<p>您可以点击 <a href='https://www.coincatch.com/zh-CN/account/newapi'>这里 </a> 创建 API Key。</p>
+
+<p>每个用户可创建10组Api Key，每个Api Key可对应设置读取、交易两种权限。</p>
+
+<p>权限说明如下：</p>
+
+<ul>
+<li>读取权限：读取权限用于对数据的查询，例如：行情数据。</li>
+<li>交易权限：交易权限用于下单、撤单等接口。</li>
+<li>划转权限：划转权限用于在CoinCatch用户账户之间划转加密货币。</li>
+<li>提币权限：提币权限用于从CoinCatch账户转出资产。<code>请注意，您只能通过IP白名单提币。</code></li>
+</ul>
+
+<p>创建成功后请务必记住以下信息：</p>
+
+<ul>
+<li><code>APIKey</code>  API交易的身份标识，随机算法生成。</li>
+<li><code>Secretkey</code>  私钥，由系统随机生成，用于签名的生成。</li>
+<li><code>Passphrase</code>  口令，由用户自己设定,需要注意的是，Passphrase忘记之后是无法找回的，需要重新创建APIKey。</li>
+</ul>
+
+<aside class="notice">
+
+创建 APIKey 时可以绑定 IP 地址，未绑定 IP 地址的 APIKey出于安全考虑，强烈建议您绑定 IP 地址。
+
+</aside>
+
+<aside class="warning">
+
+
+<red>
+    <b>风险提示</b>
+</red>
+：这三个密钥与账号安全密切相关，请牢记<b>Passphrase</b>，无论何时都请勿向他人透露。
+这三个密钥任意一个泄露可能会造成您的资产损失，若发现APIKey泄露请尽快删除该APIKey。
+
+</aside> 
+<h2 id='5076603a3e'>接口类型</h2>
+<p>本章节主要将接口类型分以下两个方面：</p>
+
+<ul>
+<li>公共接口</li>
+<li>私有接口</li>
+</ul>
+
+<p><strong>公共接口</strong></p>
+
+<p>公共接口可用于获取配置信息和行情数据。公共请求无需认证即可调用。</p>
+
+<p><strong>私有接口</strong></p>
+
+<p>私有接口可用于订单管理和账户管理。每个私有请求必须使用规范的验证形式进行<a href="#8ba46c43fe">签名</a>。</p>
+
+<p>私有接口需要使用您的APIKey进行验证。</p>
+<h2 id='12907e94be'>访问限制</h2>
+<p>本章节主要为访问限制：</p>
+
+<ul>
+<li>429  当访问超过频率限制时，将返回状态429：请求太频繁。</li>
+</ul>
+
+<p><strong>Rest API</strong></p>
+
+<p>如果传入有效的APIKey 用APIKey限速；如果没有则拿公网IP限速。</p>
+
+<p>限速规则：各个接口上有单独的说明，如果没有一般接口限速为 10次/秒。</p>
+<h2 id='api-2'>API域名</h2>
+<p>您可以自行使用Rest API接入方式进行操作。</p>
+
+<table><thead>
+<tr>
+<th>域名</th>
+<th>REST API</th>
+<th>建议使用</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>域名</td>
+<td>https://api.coincatch.com</td>
+<td>主域名</td>
+</tr>
+</tbody></table>
+<h2 id='api-3'>API公开参数</h2><h3 id='grouptype'>groupType(账单流水大类型)</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>deposit</td>
+<td>充值</td>
+</tr>
+<tr>
+<td>withdraw</td>
+<td>提现</td>
+</tr>
+<tr>
+<td>transaction</td>
+<td>交易</td>
+</tr>
+<tr>
+<td>transfer</td>
+<td>划转</td>
+</tr>
+<tr>
+<td>other</td>
+<td>其他</td>
+</tr>
+</tbody></table>
+<h3 id='biztype'>bizType(账单流水业务类型)</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>deposit</td>
+<td>充值</td>
+</tr>
+<tr>
+<td>withdraw</td>
+<td>提现</td>
+</tr>
+<tr>
+<td>buy</td>
+<td>买</td>
+</tr>
+<tr>
+<td>sell</td>
+<td>卖</td>
+</tr>
+<tr>
+<td>deduction of handling fee</td>
+<td>币币交易手续费抵扣</td>
+</tr>
+<tr>
+<td>transfer-in</td>
+<td>转入</td>
+</tr>
+<tr>
+<td>transfer-out</td>
+<td>转出</td>
+</tr>
+<tr>
+<td>rebate rewards</td>
+<td>返佣奖励</td>
+</tr>
+<tr>
+<td>airdrop rewards</td>
+<td>空投奖励</td>
+</tr>
+<tr>
+<td>USDT contract rewards</td>
+<td>USDT专业合约活动奖励</td>
+</tr>
+<tr>
+<td>mix contract rewards</td>
+<td>混合合约活动奖励</td>
+</tr>
+<tr>
+<td>System lock</td>
+<td>系统锁仓</td>
+</tr>
+<tr>
+<td>User lock</td>
+<td>用户锁仓</td>
+</tr>
+</tbody></table>
+<h3 id='status'>status(充提订单状态)</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cancel</td>
+<td>取消</td>
+</tr>
+<tr>
+<td>reject</td>
+<td>拒绝</td>
+</tr>
+<tr>
+<td>success</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>wallet-fail</td>
+<td>钱包失败</td>
+</tr>
+<tr>
+<td>wallet-processing</td>
+<td>钱包处理中</td>
+</tr>
+<tr>
+<td>first-audit</td>
+<td>初审</td>
+</tr>
+<tr>
+<td>recheck</td>
+<td>复审</td>
+</tr>
+<tr>
+<td>first-reject</td>
+<td>初审拒绝</td>
+</tr>
+<tr>
+<td>recheck-reject</td>
+<td>复审拒绝</td>
+</tr>
+</tbody></table>
+<h3 id='type'>type(用户提币地址查询)</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>chain-on</td>
+<td>链上</td>
+</tr>
+<tr>
+<td>inner-transfer</td>
+<td>内部地址</td>
+</tr>
+</tbody></table>
+<h3 id='fromtype-totype'>fromType,toType(转入类型，转出类型)</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>spot</td>
+<td>接受转入转出多个币种</td>
+</tr>
+<tr>
+<td>mix_usdt</td>
+<td>只接受转入转出USDT</td>
+</tr>
+<tr>
+<td>mix_usd</td>
+<td>混合合约账户，只接受转入转出保证金币种，如BTC, ETH, EOS, XRP, USDC等</td>
+</tr>
+</tbody></table>
+<h3 id='enterpointsource'>enterPointSource</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>WEB</td>
+<td>WEB 客户端</td>
+</tr>
+<tr>
+<td>APP</td>
+<td>APP 客户端</td>
+</tr>
+<tr>
+<td>API</td>
+<td>API 客户端</td>
+</tr>
+<tr>
+<td>SYS</td>
+<td>SYS 客户端</td>
+</tr>
+<tr>
+<td>ANDROID</td>
+<td>ANDROID 客户端</td>
+</tr>
+<tr>
+<td>IOS</td>
+<td>IOS 客户端</td>
+</tr>
+</tbody></table>
+<h3 id='accounttype'>accountType</h3>
+<table><thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>EXCHANGE</td>
+<td>现货</td>
+</tr>
+<tr>
+<td>CONTRACT</td>
+<td>U本位合约账户</td>
+</tr>
+<tr>
+<td>USDT_MIX</td>
+<td>USDT 合约账户</td>
+</tr>
+<tr>
+<td>USD_MIX</td>
+<td>USD 合约账户</td>
+</tr>
+</tbody></table>
+<h2 id='api-4'>API验证</h2>
+<p><strong>发起请求</strong></p>
+
+<p>所有REST请求的header都必须包含以下key：</p>
+
+<ul>
+<li>ACCESS-KEY：API KEY作为一个字符串。</li>
+<li>ACCESS-SIGN：使用base64编码签名（请参阅签名消息）。</li>
+<li>ACCESS-TIMESTAMP：您请求的时间戳。</li>
+<li>ACCESS-PASSPHRASE：您在创建API KEY时设置的口令。</li>
+<li>Content-Type：统一设置为application/json。</li>
+<li>locale:支持多语言，如：中文(zh-CN),英语(en-US)</li>
+</ul>
+<pre class="highlight java tab-java"><code><span class="c1">//Java</span>
+<span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+</code></pre><pre class="highlight plaintext"><code>//python
+import time
+time.time_ns() / 1000000
+</code></pre><pre class="highlight go tab-go"><code><span class="c">//Golang</span><span class="x">
+</span><span class="k">import</span><span class="x"> </span><span class="p">(</span><span class="x">
+  </span><span class="s">"time"</span><span class="x">
+</span><span class="p">)</span><span class="x">
+</span><span class="kt">int64</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">Now</span><span class="p">()</span><span class="o">.</span><span class="n">UnixNano</span><span class="p">()</span><span class="o">/</span><span class="m">1000000</span><span class="p">)</span><span class="x">
+</span></code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">//Javascript</span>
+<span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">())</span>
+</code></pre><pre class="highlight php tab-php"><code>//PHP
+microtime(true) * 1000;
+</code></pre><h2 id='8ba46c43fe'>签名</h2>
+<p>ACCESS-SIGN的请求头是对 <code>timestamp + method.toUpperCase() + requestPath + &quot;?&quot; + queryString + body</code> 字符串(+表示字符串连接)使用 <strong>HMAC SHA256</strong> 方法加密，通过<strong>BASE64</strong> 编码输出而得到的。</p>
+
+<p><strong>签名各字段说明</strong></p>
+
+<ul>
+<li>timestamp：与 ACCESS-TIMESTAMP 请求头相同。</li>
+<li>method：请求方法(POST/GET)，字母全部大写。</li>
+<li>requestPath：请求接口路径。</li>
+<li>queryString：请求URL中(?后的请求参数)的查询字符串。</li>
+<li>body：请求主体对应的字符串，如果请求没有主体(通常为GET请求)则body可省略。</li>
+</ul>
+
+<p><strong>queryString为空时，签名格式</strong></p>
+
+<p><code>
+timestamp + method.toUpperCase() + requestPath + body
+</code></p>
+
+<p><strong>queryString不为空时，签名格式</strong></p>
+
+<p><code>
+timestamp + method.toUpperCase() + requestPath + &quot;?&quot; + queryString + body
+</code></p>
+
+<p><strong>举例说明</strong></p>
+
+<p>获取深度信息，以 btcusdt 为例:</p>
+
+<ul>
+<li>Timestamp = 1591089508404</li>
+<li>Method = &quot;GET&quot;</li>
+<li>requestPath = &quot;/api/spot/v1/market/depth&quot;</li>
+<li>queryString= &quot;?symbol=btcusdt_spbl&amp;limit=20&quot;</li>
+</ul>
+
+<p>生成待签名的字符串:</p>
+
+<p><code>
+&#39;1591089508404GET/api/spot/v1/market/depth?symbol=btcusdt_spbl&amp;limit=20&#39;
+</code></p>
+
+<p>下单，以 btcusdt 为例:</p>
+
+<ul>
+<li>Timestamp = 1561022985382</li>
+<li>Method = &quot;POST&quot;</li>
+<li>requestPath = &quot;/api/spot/v1/order/order&quot;</li>
+<li>body = {&quot;symbol&quot;:&quot;btcusdt_spbl&quot;,&quot;quantity&quot;:&quot;8&quot;,&quot;side&quot;:&quot;buy&quot;,&quot;price&quot;:&quot;1&quot;,&quot;orderType&quot;:&quot;limit&quot;,&quot;clientOrderId&quot;:&quot;CoinCatch#123456&quot;}</li>
+</ul>
+
+<p>生成待签名的字符串:</p>
+
+<p><code>
+&#39;1561022985382POST/api/spot/v3/order/order{&quot;symbol&quot;:&quot;btcusdt_spbl&quot;,&quot;size&quot;:&quot;8&quot;,&quot;side&quot;:&quot;buy&quot;,&quot;price&quot;:&quot;1&quot;,&quot;orderType&quot;:&quot;limit&quot;,&quot;clientOrderId&quot;:&quot;CoinCatch#123456&quot;}&#39;  
+</code></p>
+
+<p><strong>生成最终签名的步骤</strong></p>
+
+<p>第1步，将待签名字符串使用私钥secretkey进行hmac sha256加密</p>
+
+<p><code>
+Signature = hmac_sha256(secretkey, Message)
+</code></p>
+
+<p>第2步，对于Signature进行base64编码</p>
+
+<p><code>
+Signature = base64.encode(Signature)
+</code></p>
+<h2 id='90c3a93e7c'>加密示例</h2>
+<blockquote>
+<p>Java</p>
+</blockquote>
+<pre class="highlight java tab-java"><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">generate</span><span class="o">(</span><span class="n">String</span> <span class="n">timestamp</span><span class="o">,</span> <span class="n">String</span> <span class="n">method</span><span class="o">,</span> <span class="n">String</span> <span class="n">requestPath</span><span class="o">,</span>
+                                  <span class="n">String</span> <span class="n">queryString</span><span class="o">,</span> <span class="n">String</span> <span class="n">body</span><span class="o">,</span> <span class="n">String</span> <span class="n">secretKey</span><span class="o">)</span>
+            <span class="kd">throws</span> <span class="n">CloneNotSupportedException</span><span class="o">,</span> <span class="n">InvalidKeyException</span><span class="o">,</span> <span class="n">UnsupportedEncodingException</span> <span class="o">{</span>
+
+        <span class="n">method</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">();</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="n">StringUtils</span><span class="o">.</span><span class="na">defaultIfBlank</span><span class="o">(</span><span class="n">body</span><span class="o">,</span> <span class="n">StringUtils</span><span class="o">.</span><span class="na">EMPTY</span><span class="o">);</span>
+        <span class="n">queryString</span> <span class="o">=</span> <span class="n">StringUtils</span><span class="o">.</span><span class="na">isBlank</span><span class="o">(</span><span class="n">queryString</span><span class="o">)</span> <span class="o">?</span> <span class="n">StringUtils</span><span class="o">.</span><span class="na">EMPTY</span> <span class="o">:</span> <span class="s">"?"</span> <span class="o">+</span> <span class="n">queryString</span><span class="o">;</span>
+
+        <span class="n">String</span> <span class="n">preHash</span> <span class="o">=</span> <span class="n">timestamp</span> <span class="o">+</span> <span class="n">method</span> <span class="o">+</span> <span class="n">requestPath</span> <span class="o">+</span> <span class="n">queryString</span> <span class="o">+</span> <span class="n">body</span><span class="o">;</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">preHash</span><span class="o">);</span>
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">secretKeyBytes</span> <span class="o">=</span> <span class="n">secretKey</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="n">SignatureUtils</span><span class="o">.</span><span class="na">CHARSET</span><span class="o">);</span>
+        <span class="n">SecretKeySpec</span> <span class="n">secretKeySpec</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SecretKeySpec</span><span class="o">(</span><span class="n">secretKeyBytes</span><span class="o">,</span> <span class="n">SignatureUtils</span><span class="o">.</span><span class="na">HMAC_SHA256</span><span class="o">);</span>
+        <span class="n">Mac</span> <span class="n">mac</span> <span class="o">=</span> <span class="o">(</span><span class="n">Mac</span><span class="o">)</span> <span class="n">SignatureUtils</span><span class="o">.</span><span class="na">MAC</span><span class="o">.</span><span class="na">clone</span><span class="o">();</span>
+        <span class="n">mac</span><span class="o">.</span><span class="na">init</span><span class="o">(</span><span class="n">secretKeySpec</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">Base64</span><span class="o">.</span><span class="na">getEncoder</span><span class="o">().</span><span class="na">encodeToString</span><span class="o">(</span><span class="n">mac</span><span class="o">.</span><span class="na">doFinal</span><span class="o">(</span><span class="n">preHash</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="n">SignatureUtils</span><span class="o">.</span><span class="na">CHARSET</span><span class="o">)));</span>
+    <span class="o">}</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+      <span class="n">String</span> <span class="n">msg</span><span class="o">=</span><span class="n">generate</span><span class="o">(</span><span class="s">"1659927638003"</span><span class="o">,</span><span class="s">"POST"</span><span class="o">,</span><span class="s">"/api/spot/v1/trade/orders"</span> <span class="o">,</span><span class="kc">null</span><span class="o">,</span><span class="s">"{"</span><span class="n">symbol</span><span class="s">":"</span><span class="n">TRXUSDT_SPBL</span><span class="s">","</span><span class="n">side</span><span class="s">":"</span><span class="n">buy</span><span class="s">","</span><span class="n">orderType</span><span class="s">":"</span><span class="n">limit</span><span class="s">","</span><span class="n">force</span><span class="s">":"</span><span class="n">normal</span><span class="s">","</span><span class="n">price</span><span class="s">":"</span><span class="mf">0.046317</span><span class="s">","</span><span class="n">quantity</span><span class="s">":"</span><span class="mi">1212</span><span class="s">"}"</span><span class="o">,</span><span class="s">""</span><span class="o">);</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">msg</span><span class="o">);</span>
+    <span class="o">}</span>
+
+</code></pre>
+<blockquote>
+<p>Python</p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">):</span>
+    <span class="n">mac</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">secret_key</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf8'</span><span class="p">),</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">),</span> <span class="n">digestmod</span><span class="o">=</span><span class="s">'sha256'</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">mac</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">pre_hash</span><span class="p">(</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">request_path</span><span class="p">,</span> <span class="n">body</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">timestamp</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="o">.</span><span class="n">upper</span><span class="p">(</span><span class="n">method</span><span class="p">)</span> <span class="o">+</span> <span class="n">request_path</span> <span class="o">+</span> <span class="n">body</span>
+
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">signStr</span> <span class="o">=</span> <span class="n">sign</span><span class="p">(</span><span class="n">pre_hash</span><span class="p">(</span><span class="s">'1659927638003'</span><span class="p">,</span> <span class="s">'POST'</span><span class="p">,</span> <span class="s">'/api/spot/v1/trade/orders'</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="s">'{"symbol":"TRXUSDT_SPBL","side":"buy","orderType":"limit","force":"normal","price":"0.046317","quantity":"1212"}'</span><span class="p">)),</span> <span class="s">''</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">signStr</span><span class="p">)</span>
+
+</code></pre><h2 id='d9ed27b09f'>请求交互</h2>
+<p>所有请求基于Https协议，POST 请求头信息中Content-Type 需要统一设置为: &#39;application/json&#39;。</p>
+
+<p><strong>请求交互说明</strong></p>
+
+<ul>
+<li>请求参数：根据接口请求参数规定进行参数封装。</li>
+<li>提交请求参数：将封装好的请求参数通过GET/POST方式提交至服务器。</li>
+<li>服务器响应：服务器首先对用户请求数据进行参数安全校验，通过校验后根据业务逻辑将响应数据以JSON格式返回给用户。</li>
+<li>数据处理：对服务器响应数据进行处理。</li>
+</ul>
+
+<p><strong>成功</strong></p>
+
+<p>HTTP状态码200表示成功响应，并可能包含内容。如果响应含有内容，则将显示在相应的返回内容里面。</p>
+
+<p><strong>常见错误码</strong></p>
+
+<ul>
+<li>400 Bad Request – Invalid request format 请求格式无效</li>
+<li>401 Unauthorized – Invalid API Key 无效的API Key</li>
+<li>403 Forbidden – You do not have access to the requested resource 请求无权限</li>
+<li>404 Not Found 没有找到请求</li>
+<li>429 Too Many Requests 请求太频繁被系统限流</li>
+<li>500 Internal Server Error – We had a problem with our server 服务器内部错误</li>
+<li>如果失败body带有错误描述信息</li>
+</ul>
+<h2 id='9a3f8fe408'>标准规范</h2>
+<p><strong>时间戳</strong></p>
+
+<p>请求签名中的ACCESS-TIMESTAMP的单位是毫秒。请求的时间戳必须在API服务时间的30秒内，否则请求将被视为过期并被拒绝。
+如果本地服务器时间和API服务器时间之间存在较大的偏差，那么我们建议您使用通过查询API服务器时间来更新http header。</p>
+
+<p><strong>限频规则</strong></p>
+
+<p>如果请求过于频繁系统将自动限制请求，并在http header中返回429 too many requests状态码。</p>
+
+<ul>
+<li>公共接口：如行情接口，统一限频为2秒最多20个请求。</li>
+<li>授权接口：通过apikey限制授权接口的调用，参考每个接口的限频规则限频。</li>
+</ul>
+
+<p><strong>请求格式</strong></p>
+
+<p>目前只有两种格式的请求方法：GET和POST</p>
+
+<ul>
+<li>GET:  参数通过queryString在路径中传输到服务器。</li>
+<li>POST: 参数按照json格式发送body传输到服务器。</li>
+</ul>
+<h1 id='restapi'>RestAPI</h1><h2 id='5a0fbdfb96'>基础配置接口</h2><h3 id='3f1907847c'>获取服务器时间</h3>
+<p>限速规则：20次/1s (IP)</p>
+
+<p><strong>HTTP请求</strong></p>
+
+<p>获取服务器时间</p>
+
+<ul>
+<li>GET /api/spot/v1/public/time </li>
+</ul>
+
+<blockquote>
+<p>请求示例</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.coincatch.com/api/spot/v1/public/time"</span>
+</code></pre>
+<blockquote>
+<p>返回数据：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1622097118134</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='0768e744b5'>币种基础信息</h3>
+<p>限速规则：3次/1s  (IP)</p>
+
+<p><strong>HTTP请求</strong>
+获取平台所有币种信息</p>
+
+<ul>
+<li>GET /api/spot/v1/public/currencies</li>
+</ul>
+
+<blockquote>
+<p>请求示例</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.coincatch.com/api/spot/v1/public/currencies"</span>
+</code></pre>
+<blockquote>
+<p>返回数据:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"00000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"coinId"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"coinName"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"transfer"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"chains"</span><span class="p">:[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"chain"</span><span class="p">:</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"needTag"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"withdrawable"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"rechargeAble"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"withdrawFee"</span><span class="p">:</span><span class="s2">"0.005"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"extraWithDrawFee"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"depositConfirm"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"withdrawConfirm"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"minDepositAmount"</span><span class="p">:</span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"minWithdrawAmount"</span><span class="p">:</span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"browserUrl"</span><span class="p">:</span><span class="s2">"https://blockchair.com/bitcoin/testnet/transaction/"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>返回值说明</strong></p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">返回字段</th>
+<th style="text-align: left">字段说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">coinId</td>
+<td style="text-align: left">币种id</td>
+</tr>
+<tr>
+<td style="text-align: left">coinName</td>
+<td style="text-align: left">币种名称</td>
+</tr>
+<tr>
+<td style="text-align: left">transfer</td>
+<td style="text-align: left">是否可以划转</td>
+</tr>
+<tr>
+<td style="text-align: left">chains</td>
+<td style="text-align: left"></td>
+</tr>
+<tr>
+<td style="text-align: left">&gt; chain</td>
+<td style="text-align: left">链名称</td>
+</tr>
+<tr>
+<td style="text-align: left">&gt; needTag</td>
+<td style="text-align: left">是否需要tag</td>
+</tr>
+<tr>
+<td style="text-align: left">&gt; withdrawable</td>
+<td style="text-align: left">是否可提现</td>
+</tr>
+<tr>
+<td style="text-align: left">&gt; rechargeAble</td>
+<td style="text-align: left">是否可充值</td>
+</tr>
+<tr>
+<td style="text-align: left">&gt; withdrawFee</td>
+<td style="text-align: left">提现手续费</td>
+</tr>
+<tr>
+<td style="text-align: left">&gt; extraWithDrawFee</td>
+<td style="text-align: left">额外钱包收取</td>
+</tr>
+<tr>
+<td style="text-align: left">&gt; depositConfirm</td>
+<td style="text-align: left">充值确认块数</td>
+</tr>
+<tr>
+<td style="text-align: left">&gt; withdrawConfirm</td>
+<td style="text-align: left">提现确认块数</td>
+</tr>
+<tr>
+<td style="text-align: left">&gt; minDepositAmount</td>
+<td style="text-align: left">最小充值数</td>
+</tr>
+<tr>
+<td style="text-align: left">&gt; minWithdrawAmount</td>
+<td style="text-align: left">最小提现数</td>
+</tr>
+<tr>
+<td style="text-align: left">&gt; browserUrl</td>
+<td style="text-align: left">区块浏览器地址</td>
+</tr>
+</tbody></table>
+<h2 id='ec5249e068'>钱包接口</h2><h3 id='1045de04a1'>划转</h3>
+<p>限速规则：5次/1s (uid)</p>
+
+<p><strong>HTTP请求</strong></p>
+
+<ul>
+<li>POST /api/spot/v1/wallet/transfer-v2</li>
+</ul>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fromType</td>
+<td>String</td>
+<td>是</td>
+<td>转出账户类型</td>
+</tr>
+<tr>
+<td>toType</td>
+<td>String</td>
+<td>是</td>
+<td>转入账户类型</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>String</td>
+<td>是</td>
+<td>划转金额</td>
+</tr>
+<tr>
+<td>coin</td>
+<td>String</td>
+<td>是</td>
+<td>划转币种</td>
+</tr>
+<tr>
+<td>clientOid</td>
+<td>String</td>
+<td>否</td>
+<td>用户自定义ID</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>fromType, toType
+
+<ul>
+<li>spot        接受转入转出多个币种</li>
+<li>mix_usdt        只接受转入转出USDT</li>
+<li>mix_usd         混合合约账户，只接受转入转出保证金币种，如BTC, ETH, EOS, XRP, USDC等</li>
+</ul></li>
+</ul>
+
+<p>fromType/toType限制说明</p>
+
+<table><thead>
+<tr>
+<th>fromType</th>
+<th>toType</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>spot</td>
+<td>spot</td>
+<td>任意转</td>
+</tr>
+<tr>
+<td>spot</td>
+<td>mix_usdt</td>
+<td>只接受 USDT</td>
+</tr>
+<tr>
+<td>spot</td>
+<td>mix_usd</td>
+<td>如 BTC, ETH, EOS, XRP, USDC</td>
+</tr>
+<tr>
+<td>mix_usdt</td>
+<td>spot</td>
+<td>只接受 USDT</td>
+</tr>
+<tr>
+<td>mix_usdt</td>
+<td>mix_usd</td>
+<td>禁止</td>
+</tr>
+<tr>
+<td>mix_usdt</td>
+<td>mix_usdt</td>
+<td>只接受 USDT</td>
+</tr>
+<tr>
+<td>mix_usd</td>
+<td>spot</td>
+<td>如 BTC, ETH, EOS, XRP, USDC</td>
+</tr>
+<tr>
+<td>mix_usd</td>
+<td>mix_usdt</td>
+<td>禁止</td>
+</tr>
+<tr>
+<td>mix_usd</td>
+<td>mix_usd</td>
+<td>如 BTC, ETH, EOS, XRP, USDC</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>请求示例</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"https://api.coincatch.com/api/spot/v1/wallet/transfer-v2"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-KEY:you apiKey"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-SIGN:*******"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-PASSPHRASE:*****"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-TIMESTAMP:1659076670000"</span> <span class="se">\</span>
+  -H <span class="s2">"locale:en-US"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="se">\'</span><span class="o">{</span><span class="s2">"fromType"</span>: <span class="s2">"spot"</span>,<span class="s2">"toType"</span>: <span class="s2">"mix_usdt"</span>,<span class="s2">"amount"</span>: <span class="s2">"100"</span>,<span class="s2">"coin"</span>: <span class="s2">"USDT"</span><span class="o">}</span><span class="s1">'
+</span></code></pre>
+<blockquote>
+<p>返回数据:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "code":"00000",
+    "msg":"success",
+    "data": {
+        "transferId":"123456",
+        "clientOrderId":"x123"
+    }
+}
+</code></pre>
+<p><strong>返回值说明</strong></p>
+
+<table><thead>
+<tr>
+<th>返回字段</th>
+<th>字段说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transferId</td>
+<td>划转ID</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>Client Order ID</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>fromType, toType
+
+<ul>
+<li>spot        接受转入转出多个币种</li>
+<li>mix_usdt        只接受转入转出USDT</li>
+<li>mix_usd         混合合约账户，只接受转入转出保证金币种，如BTC, ETH, EOS, XRP, USDC等</li>
+</ul></li>
+</ul>
+<h3 id='263e170b4c'>获取充币地址</h3>
+<p>限速规则：5次/1s (uid)</p>
+
+<p><strong>HTTP请求</strong></p>
+
+<ul>
+<li>GET /api/spot/v1/wallet/deposit-address</li>
+</ul>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>coin</td>
+<td>String</td>
+<td>是</td>
+<td>币种</td>
+</tr>
+<tr>
+<td>chain</td>
+<td>String</td>
+<td>是</td>
+<td>链名称</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>请求示例</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.coincatch.com/api/spot/v1/wallet/deposit-address?coin=USDT&amp;chain=trc20"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-KEY:you apiKey"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-SIGN:*******"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-PASSPHRASE:*****"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-TIMESTAMP:1659076670000"</span> <span class="se">\</span>
+  -H <span class="s2">"locale:en-US"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+</code></pre>
+<blockquote>
+<p>返回数据:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "code": "00000",
+  "msg": "success",
+  "data": {
+    "address": "1HPn8Rx2y6nNSfagQBKy27GB99Vbzg89wv",
+    "chain": "BTC-Bitcoin",
+    "coin": "BTC",
+    "tag": "",
+    "url": "https://btc.com/1HPn8Rx2y6nNSfagQBKy27GB99Vbzg89wv"
+  }
+}
+</code></pre>
+<p><strong>返回值说明</strong></p>
+
+<table><thead>
+<tr>
+<th>返回字段</th>
+<th>字段说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>充币地址</td>
+</tr>
+<tr>
+<td>chain</td>
+<td>链名称</td>
+</tr>
+<tr>
+<td>coin</td>
+<td>币种名称</td>
+</tr>
+<tr>
+<td>tag</td>
+<td>tag</td>
+</tr>
+<tr>
+<td>url</td>
+<td>区块链地址</td>
+</tr>
+</tbody></table>
+<h3 id='096be69702'>提币</h3>
+<p>只是链上提币</p>
+
+<p>限速规则：5次/1s (uid)</p>
+
+<p><strong>HTTP请求</strong></p>
+
+<ul>
+<li>POST /api/spot/v1/wallet/withdrawal-v2</li>
+</ul>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>coin</td>
+<td>String</td>
+<td>是</td>
+<td>币种</td>
+</tr>
+<tr>
+<td>address</td>
+<td>String</td>
+<td>是</td>
+<td>提币地址</td>
+</tr>
+<tr>
+<td>chain</td>
+<td>String</td>
+<td>是</td>
+<td>提币网路</td>
+</tr>
+<tr>
+<td>tag</td>
+<td>String</td>
+<td>否</td>
+<td>地址tag</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>String</td>
+<td>是</td>
+<td>提币数量</td>
+</tr>
+<tr>
+<td>remark</td>
+<td>String</td>
+<td>否</td>
+<td>备注</td>
+</tr>
+<tr>
+<td>clientOid</td>
+<td>String</td>
+<td>否</td>
+<td>客户端自定义Id 唯一健</td>
+</tr>
+</tbody></table>
+
+<p>&#39;address&#39; 应该在提币的 address book 里</p>
+
+<blockquote>
+<p>请求示例</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"https://api.coincatch.com/api/spot/v1/wallet/withdrawal-v2"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-KEY:you apiKey"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-SIGN:*******"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-PASSPHRASE:*****"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-TIMESTAMP:1659076670000"</span> <span class="se">\</span>
+  -H <span class="s2">"locale:en-US"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="se">\'</span><span class="o">{</span><span class="s2">"coin"</span>: <span class="s2">"USDT"</span>,<span class="s2">"address"</span>: <span class="s2">"TBQ2LGFysnqkscvKqLBxnVVVw7ohiDvbdZ"</span>,<span class="s2">"chain"</span>: <span class="s2">"trc20"</span>,<span class="s2">"amount"</span>: <span class="s2">"10"</span><span class="o">}</span><span class="s1">'
+</span></code></pre>
+<blockquote>
+<p>返回数据:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "code": "00000",
+  "msg": "success",
+  "data": {
+    "orderId":888291686266343424",
+    "clientOrderId":"123"
+  }
+}
+</code></pre>
+<p><strong>返回值说明</strong></p>
+
+<table><thead>
+<tr>
+<th>返回字段</th>
+<th>字段说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>订单ID</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>client order ID</td>
+</tr>
+</tbody></table>
+<h3 id='6eb422678c'>内部提币</h3>
+<p>内部提币 指双方用户都在CoinCatch平台</p>
+
+<p>通过uid形式直接提币，不走链上，不需要传地址</p>
+
+<p>限速规则：5次/1s (uid)</p>
+
+<p><strong>HTTP请求</strong></p>
+
+<ul>
+<li>POST /api/spot/v1/wallet/withdrawal-inner-v2</li>
+</ul>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>coin</td>
+<td>String</td>
+<td>是</td>
+<td>币种</td>
+</tr>
+<tr>
+<td>toUid</td>
+<td>String</td>
+<td>是</td>
+<td>收款方uid</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>String</td>
+<td>是</td>
+<td>提币数量</td>
+</tr>
+<tr>
+<td>clientOid</td>
+<td>String</td>
+<td>否</td>
+<td>客户端自定义ID 唯一健</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>请求示例</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"https://api.coincatch.com/api/spot/v1/wallet/withdrawal-inner-v2"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-KEY:you apiKey"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-SIGN:*******"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-PASSPHRASE:*****"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-TIMESTAMP:1659076670000"</span> <span class="se">\</span>
+  -H <span class="s2">"locale:en-US"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="se">\'</span><span class="o">{</span><span class="s2">"coin"</span>: <span class="s2">"USDT"</span>,<span class="s2">"toUid"</span>: <span class="s2">"6314497154"</span>,<span class="s2">"amount"</span>: <span class="s2">"10"</span><span class="o">}</span><span class="s1">'
+</span></code></pre>
+<blockquote>
+<p>返回数据</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "code": "00000",
+  "msg": "success",
+  "data": {
+    "orderId":888291686266343424",
+    "clientOrderId":"123"
+  }
+}
+</code></pre>
+<p><strong>返回值说明</strong></p>
+
+<table><thead>
+<tr>
+<th>返回字段</th>
+<th>字段说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orderId</td>
+<td>订单ID</td>
+</tr>
+<tr>
+<td>clientOrderId</td>
+<td>client order ID</td>
+</tr>
+</tbody></table>
+<h3 id='db22942d47'>获取提币记录</h3>
+<p>限速规则：20次/1s </p>
+
+<p><strong>HTTP请求</strong></p>
+
+<ul>
+<li>GET /api/spot/v1/wallet/withdrawal-list</li>
+</ul>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>coin</td>
+<td>String</td>
+<td>否</td>
+<td>币种</td>
+</tr>
+<tr>
+<td>clientOid</td>
+<td>String</td>
+<td>否</td>
+<td>clientOid</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>String</td>
+<td>是</td>
+<td>开始时间 (时间戳 毫秒)</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>String</td>
+<td>是</td>
+<td>结束时间 (时间戳 毫秒)</td>
+</tr>
+<tr>
+<td>pageNo</td>
+<td>String</td>
+<td>否</td>
+<td>查询页数 默认1</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>String</td>
+<td>否</td>
+<td>条数 默认20 最大100</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>请求示例</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.coincatch.com/api/spot/v1/wallet/withdrawal-list?coin=USDT&amp;clientOid=123&amp;startTime=1659036670000&amp;endTime=1659076670000&amp;pageNo=1&amp;pageSize=20"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-KEY:you apiKey"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-SIGN:*******"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-PASSPHRASE:*****"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-TIMESTAMP:1659076670000"</span> <span class="se">\</span>
+  -H <span class="s2">"locale:en-US"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+</code></pre>
+<blockquote>
+<p>返回数据:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"requestTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1654507973411</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"912533114861326336"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"txId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"912533114861326336"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"coin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"clientOid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"withdraw"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7713789662"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"chain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"erc20"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"confirm"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tag"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1653290769222"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"uTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1653290769222"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>返回值说明</strong></p>
+
+<table><thead>
+<tr>
+<th>返回字段</th>
+<th>字段说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>订单id</td>
+</tr>
+<tr>
+<td>txId</td>
+<td>提现交易id</td>
+</tr>
+<tr>
+<td>coin</td>
+<td>币种名称</td>
+</tr>
+<tr>
+<td>clientOid</td>
+<td>clientOid</td>
+</tr>
+<tr>
+<td>type</td>
+<td>提币类型</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>数量</td>
+</tr>
+<tr>
+<td>status</td>
+<td>提币状态</td>
+</tr>
+<tr>
+<td>toAddress</td>
+<td>提币地址</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>手续费</td>
+</tr>
+<tr>
+<td>chain</td>
+<td>提币网络</td>
+</tr>
+<tr>
+<td>confirm</td>
+<td>确认块数</td>
+</tr>
+<tr>
+<td>tag</td>
+<td>tag</td>
+</tr>
+<tr>
+<td>cTime</td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td>uTime</td>
+<td>修改时间</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>status
+
+<ul>
+<li>pending 待初审</li>
+<li>pending_review 待复审</li>
+<li>pending_fail 初审失败</li>
+<li>pending_review_fail 复审失败</li>
+<li>reject 拒绝</li>
+<li>success 成功</li>
+</ul></li>
+</ul>
+<h3 id='e2a027ceb6'>获取充值记录</h3>
+<p>限速规则：20次/1s </p>
+
+<p><strong>HTTP请求</strong></p>
+
+<ul>
+<li>GET /api/spot/v1/wallet/deposit-list</li>
+</ul>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th>参数名</th>
+<th>参数类型</th>
+<th>是否必须</th>
+<th>描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>coin</td>
+<td>String</td>
+<td>否</td>
+<td>币种</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>String</td>
+<td>是</td>
+<td>开始时间 (时间戳 毫秒)</td>
+</tr>
+<tr>
+<td>endTime</td>
+<td>String</td>
+<td>是</td>
+<td>结束时间 (时间戳 毫秒)</td>
+</tr>
+<tr>
+<td>pageNo</td>
+<td>String</td>
+<td>否</td>
+<td>查询页数 默认1</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>String</td>
+<td>否</td>
+<td>条数 默认20 最大100</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>请求示例</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.coincatch.com/api/spot/v1/wallet/deposit-list?coin=USDT&amp;startTime=1659036670000&amp;endTime=1659076670000&amp;pageNo=1&amp;pageSize=20"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-KEY:you apiKey"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-SIGN:*******"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-PASSPHRASE:*****"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-TIMESTAMP:1659076670000"</span> <span class="se">\</span>
+  -H <span class="s2">"locale:en-US"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+</code></pre>
+<blockquote>
+<p>返回数据:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "code": "00000",
+    "msg": "success",
+    "requestTime": 1654507973411,
+    "data": [
+        {
+            "id": "912533114861326336",
+            "txId": "912533114861326336",
+            "coin": "USDT",
+            "type": "withdraw",
+            "amount": "10.00000000",
+            "status": "success",
+            "toAddress": "7713789662",
+            "fee": "0.00000000",
+            "confirm":"10",
+            "chain": "erc20",
+            "tag": null,
+            "cTime": "1653290769222",
+            "uTime": "1653290769222"
+        }
+    ]
+}
+</code></pre>
+<p><strong>返回值说明</strong></p>
+
+<table><thead>
+<tr>
+<th>返回字段</th>
+<th>字段说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>订单id</td>
+</tr>
+<tr>
+<td>txId</td>
+<td>交易id</td>
+</tr>
+<tr>
+<td>coin</td>
+<td>币种名称</td>
+</tr>
+<tr>
+<td>type</td>
+<td>充币类型</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>数量</td>
+</tr>
+<tr>
+<td>status</td>
+<td>提币状态</td>
+</tr>
+<tr>
+<td>toAddress</td>
+<td>充值地址</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>手续费</td>
+</tr>
+<tr>
+<td>confirm</td>
+<td>confirm, 可能为null</td>
+</tr>
+<tr>
+<td>chain</td>
+<td>充币网络</td>
+</tr>
+<tr>
+<td>tag</td>
+<td>tag</td>
+</tr>
+<tr>
+<td>cTime</td>
+<td>创建时间</td>
+</tr>
+<tr>
+<td>uTime</td>
+<td>修改时间</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>status
+
+<ul>
+<li>Pending 待初审</li>
+<li>pending_review 待复审</li>
+<li>pending_fail 初审失败</li>
+<li>pending_review_fail 复审失败</li>
+<li>reject 拒绝</li>
+<li>success 成功</li>
+</ul></li>
+</ul>
+<h2 id='df03e301d5'>账户接口</h2><h3 id='apikey'>获取ApiKey信息</h3>
+<p>限速规则：1次/1s</p>
+
+<p><strong>HTTP请求</strong></p>
+
+<ul>
+<li>GET  /api/spot/v1/account/getInfo</li>
+</ul>
+
+<blockquote>
+<p>请求示例</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.coincatch.com/api/spot/v1/account/getInfo"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-KEY:you apiKey"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-SIGN:*******"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-PASSPHRASE:*****"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-TIMESTAMP:1659076670000"</span> <span class="se">\</span>
+  -H <span class="s2">"locale:en-US"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+</code></pre>
+<blockquote>
+<p>返回数据</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "code": "00000",
+    "msg": "success",
+    "data": {
+        "user_id": "714229403",
+        "inviter_id": "682221498",
+        "agent_inviter_code":null,
+        "channel":null,
+        "ips": "172.23.88.91",
+        "authorities": [
+            "trade",
+            "readonly"
+        ],
+        "parentId":"566624801",
+        "trader":false
+    }
+}
+</code></pre>
+<p><strong>返回值说明</strong></p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">返回字段</th>
+<th style="text-align: center">字段说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">user_id</td>
+<td style="text-align: center">uid</td>
+</tr>
+<tr>
+<td style="text-align: left">inviter_id</td>
+<td style="text-align: center">邀请人id</td>
+</tr>
+<tr>
+<td style="text-align: left">agent_inviter_code</td>
+<td style="text-align: center">渠道邀请码</td>
+</tr>
+<tr>
+<td style="text-align: left">channel</td>
+<td style="text-align: center">渠道</td>
+</tr>
+<tr>
+<td style="text-align: left">ips</td>
+<td style="text-align: center">apikey 设置IP白名单</td>
+</tr>
+<tr>
+<td style="text-align: left">authorities</td>
+<td style="text-align: center">权限</td>
+</tr>
+<tr>
+<td style="text-align: left">parentId</td>
+<td style="text-align: center">母账户uid</td>
+</tr>
+<tr>
+<td style="text-align: left">trader</td>
+<td style="text-align: center">是否是交易员</td>
+</tr>
+</tbody></table>
+<h3 id='6f78777a98'>获取账户资产</h3>
+<p>限速规则：10次/1s</p>
+
+<p><strong>HTTP请求</strong>
+获取账户资产</p>
+
+<ul>
+<li>GET  /api/spot/v1/account/assets</li>
+</ul>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">参数名</th>
+<th style="text-align: left">参数类型</th>
+<th style="text-align: center">是否必须</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">coin</td>
+<td style="text-align: left">String</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">币种</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>请求示例</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.coincatch.com/api/spot/v1/account/assets?coin=USDT"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-KEY:you apiKey"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-SIGN:*******"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-PASSPHRASE:*****"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-TIMESTAMP:1659076670000"</span> <span class="se">\</span>
+  -H <span class="s2">"locale:en-US"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+</code></pre>
+<blockquote>
+<p>返回数据</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "code":"00000",
+  "message":"success",
+  "data":[
+    {
+        "coinId":"10012",
+        "coinName":"usdt",
+        "available":"0",
+        "frozen":"0",
+        "lock":"0",
+        "uTime":"1622697148"
+    }
+]
+}
+</code></pre>
+<p><strong>返回值说明</strong></p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">返回字段</th>
+<th style="text-align: center">字段说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">coinId</td>
+<td style="text-align: center">币种id</td>
+</tr>
+<tr>
+<td style="text-align: left">coinName</td>
+<td style="text-align: center">币种名称</td>
+</tr>
+<tr>
+<td style="text-align: left">available</td>
+<td style="text-align: center">可用资产</td>
+</tr>
+<tr>
+<td style="text-align: left">frozen</td>
+<td style="text-align: center">冻结资产, 通常是下单时冻结</td>
+</tr>
+<tr>
+<td style="text-align: left">lock</td>
+<td style="text-align: center">锁仓资产，成为法币商家等的锁仓</td>
+</tr>
+<tr>
+<td style="text-align: left">uTime</td>
+<td style="text-align: center">更新时间</td>
+</tr>
+</tbody></table>
+<h3 id='23f9acd1d3'>获取账单流水</h3>
+<p>限速规则 10次/1s</p>
+
+<p><strong>HTTP请求</strong></p>
+
+<p>获取账单流水</p>
+
+<ul>
+<li>POST /api/spot/v1/account/bills</li>
+</ul>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">参数名</th>
+<th style="text-align: left">参数类型</th>
+<th style="text-align: center">是否必须</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">coinId</td>
+<td style="text-align: left">Integer</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">币种ID</td>
+</tr>
+<tr>
+<td style="text-align: left">groupType</td>
+<td style="text-align: left">String</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">账单大类型   <a href="#grouptype">groupType</a></td>
+</tr>
+<tr>
+<td style="text-align: left">bizType</td>
+<td style="text-align: left">String</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">业务类型  <a href="#biztype">bizType</a></td>
+</tr>
+<tr>
+<td style="text-align: left">after</td>
+<td style="text-align: left">String</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">传入 billId， 返回小于该 billId 的数据</td>
+</tr>
+<tr>
+<td style="text-align: left">before</td>
+<td style="text-align: left">String</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">传入 billId， 返回大于等于该 billId 的数据</td>
+</tr>
+<tr>
+<td style="text-align: left">limit</td>
+<td style="text-align: left">Integer</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">返回结果的数量，默认100，最大 500</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>请求示例</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.coincatch.com/api/spot/v1/account/bills"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-KEY:you apiKey"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-SIGN:*******"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-PASSPHRASE:*****"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-TIMESTAMP:1659076670000"</span> <span class="se">\</span>
+  -H <span class="s2">"locale:en-US"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{ 
+    "coinId":"2",
+    "groupType":"deposit",
+    "bizType":"deposit",
+    "before":"987952085712531455",
+    "after":"987952085712531457",
+    "limit":"100"
+}'</span>
+</code></pre>
+<blockquote>
+<p>返回数据</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "code":"00000",
+  "message":"success",
+  "data":[{
+      "cTime":"1622697148",
+      "coinId":"22",
+      "coinName":"usdt",
+      "groupType":"deposit",
+      "bizType":"transfer-in", 
+      "quantity":"1",
+      "balance": "1",
+      "fees":"0",
+      "billId":"1291"
+}]
+}
+</code></pre>
+<p><strong>返回值说明</strong></p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">返回字段</th>
+<th style="text-align: center">字段说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">cTime</td>
+<td style="text-align: center">创建时间</td>
+</tr>
+<tr>
+<td style="text-align: left">coinId</td>
+<td style="text-align: center">币种Id</td>
+</tr>
+<tr>
+<td style="text-align: left">coinName</td>
+<td style="text-align: center">币种名称</td>
+</tr>
+<tr>
+<td style="text-align: left">groupType</td>
+<td style="text-align: center">流水类型</td>
+</tr>
+<tr>
+<td style="text-align: left">bizType</td>
+<td style="text-align: center">流水账单业务类型</td>
+</tr>
+<tr>
+<td style="text-align: left">quantity</td>
+<td style="text-align: center">数量</td>
+</tr>
+<tr>
+<td style="text-align: left">balance</td>
+<td style="text-align: center">划转之前的资产</td>
+</tr>
+<tr>
+<td style="text-align: left">fees</td>
+<td style="text-align: center">手续费</td>
+</tr>
+<tr>
+<td style="text-align: left">billId</td>
+<td style="text-align: center">id</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><a href = "#grouptype">groupType</a>
+
+<ul>
+<li>deposit</li>
+<li>withdraw</li>
+<li>transaction</li>
+<li>transfer</li>
+<li>other</li>
+</ul></li>
+<li><a href = "#biztype">bizType</a>
+
+<ul>
+<li>deposit</li>
+<li>withdraw</li>
+<li>buy</li>
+<li>sell</li>
+<li>transfer-in</li>
+<li>transfer-out</li>
+<li>system-lock</li>
+<li>user-lock</li>
+</ul></li>
+</ul>
+<h3 id='b0c7e2b4a5'>获取划转记录</h3>
+<p>限速规则 20次/1s</p>
+
+<p><strong>HTTP请求</strong></p>
+
+<ul>
+<li>GET /api/spot/v1/account/transferRecords</li>
+</ul>
+
+<p><strong>请求参数</strong></p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">参数名</th>
+<th style="text-align: left">参数类型</th>
+<th style="text-align: center">是否必须</th>
+<th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">coinId</td>
+<td style="text-align: left">Integer</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">币种ID</td>
+</tr>
+<tr>
+<td style="text-align: left">fromType</td>
+<td style="text-align: left">String</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">账单大类型</td>
+</tr>
+<tr>
+<td style="text-align: left">after</td>
+<td style="text-align: left">Long</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">传入<strong>终止</strong>时间，格式为时间戳，单位为秒</td>
+</tr>
+<tr>
+<td style="text-align: left">before</td>
+<td style="text-align: left">Long</td>
+<td style="text-align: center">是</td>
+<td style="text-align: center">传入<strong>起始</strong>时间，格式为时间戳，单位为秒</td>
+</tr>
+<tr>
+<td style="text-align: left">clientOid</td>
+<td style="text-align: left">String</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">clientOid，精确匹配</td>
+</tr>
+<tr>
+<td style="text-align: left">limit</td>
+<td style="text-align: left">Integer</td>
+<td style="text-align: center">否</td>
+<td style="text-align: center">返回结果的数量，默认100，最大 500</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>请求示例</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.coincatch.com/api/spot/v1/account/transferRecords?coinId=2&amp;fromType=exchange&amp;after=1659076670&amp;before=1659076670&amp;limit=100"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-KEY:you apiKey"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-SIGN:*******"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-PASSPHRASE:*****"</span> <span class="se">\</span>
+  -H <span class="s2">"ACCESS-TIMESTAMP:1659076670000"</span> <span class="se">\</span>
+  -H <span class="s2">"locale:en-US"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span>
+</code></pre>
+<blockquote>
+<p>返回数据</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "code":"00000",
+    "data":[
+        {
+            "coinName":"btc",
+            "status":"SUCCESS",
+            "toType":"USD_MIX",
+            "toSymbol":"",
+            "fromType":"CONTRACT",
+            "fromSymbol":"BTC/USD",
+            "amount":"1000.00000000",
+            "tradeTime":"1631070374488",
+            "clientOid": "1",
+            "transferId": "997381107487641600"
+        }
+    ],
+    "msg":"success",
+    "requestTime":1631608142260
+}
+</code></pre>
+<p><strong>返回值说明</strong></p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">返回字段</th>
+<th style="text-align: center">字段说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">coinName</td>
+<td style="text-align: center">币种名称</td>
+</tr>
+<tr>
+<td style="text-align: left">status</td>
+<td style="text-align: center">划转状态</td>
+</tr>
+<tr>
+<td style="text-align: left">toType</td>
+<td style="text-align: center">转入账户类型 <a href="#accounttype">accountType</a></td>
+</tr>
+<tr>
+<td style="text-align: left">toSymbol</td>
+<td style="text-align: center">转入账户交易对</td>
+</tr>
+<tr>
+<td style="text-align: left">fromType</td>
+<td style="text-align: center">转出账户类型 <a href="#accounttype">accountType</a></td>
+</tr>
+<tr>
+<td style="text-align: left">fromSymbol</td>
+<td style="text-align: center">转出账户交易对</td>
+</tr>
+<tr>
+<td style="text-align: left">amount</td>
+<td style="text-align: center">数量</td>
+</tr>
+<tr>
+<td style="text-align: left">tradeTime</td>
+<td style="text-align: center">交易时间 (毫秒时间戳)</td>
+</tr>
+<tr>
+<td style="text-align: left">clientOid</td>
+<td style="text-align: center">client order ID</td>
+</tr>
+<tr>
+<td style="text-align: left">transferId</td>
+<td style="text-align: center">Transfer ID</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li>fromType / toType
+
+<ul>
+<li>exchange 现货</li>
+<li>usdt_mix U本位合约账户</li>
+<li>usdc_mix USDC本位合约账户</li>
+<li>margin_cross 全仓杠杆账户</li>
+<li>margin_isolated 逐仓杠杆账户</li>
+</ul></li>
+</ul>
+<h1 id='restapi-2'>RestAPI错误</h1><h2 id='5699b4eac7'>公共错误码</h2>
+<table><thead>
+<tr>
+<th style="text-align: left">错误提示</th>
+<th style="text-align: left">错误码</th>
+<th style="text-align: center">http状态码</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">请求头&quot;ACCESS_KEY&quot;不能为空</td>
+<td style="text-align: left">40001</td>
+<td style="text-align: center">400</td>
+</tr>
+<tr>
+<td style="text-align: left">请求头&quot;ACCESS_SIGN&quot;不能为空</td>
+<td style="text-align: left">40002</td>
+<td style="text-align: center">400</td>
+</tr>
+<tr>
+<td style="text-align: left">请求头&quot;ACCESS_TIMESTAMP&quot;不能为空</td>
+<td style="text-align: left">40003</td>
+<td style="text-align: center">400</td>
+</tr>
+<tr>
+<td style="text-align: left">无效的ACCESS_TIMESTAMP</td>
+<td style="text-align: left">40005</td>
+<td style="text-align: center">400</td>
+</tr>
+<tr>
+<td style="text-align: left">无效的ACCESS_KEY</td>
+<td style="text-align: left">40006</td>
+<td style="text-align: center">400</td>
+</tr>
+<tr>
+<td style="text-align: left">无效的Content_Type，请使用“application/json”格式</td>
+<td style="text-align: left">40007</td>
+<td style="text-align: center">400</td>
+</tr>
+<tr>
+<td style="text-align: left">请求时间戳过期</td>
+<td style="text-align: left">40008</td>
+<td style="text-align: center">400</td>
+</tr>
+<tr>
+<td style="text-align: left">api 校验失败</td>
+<td style="text-align: left">40009</td>
+<td style="text-align: center">400</td>
+</tr>
+<tr>
+<td style="text-align: left">请求太频繁</td>
+<td style="text-align: left">429</td>
+<td style="text-align: center">429</td>
+</tr>
+<tr>
+<td style="text-align: left">请求头&quot;ACCESS_PASSPHRASE&quot;不能为空</td>
+<td style="text-align: left">40011</td>
+<td style="text-align: center">400</td>
+</tr>
+<tr>
+<td style="text-align: left">apikey/passphrase不正确</td>
+<td style="text-align: left">40012</td>
+<td style="text-align: center">400</td>
+</tr>
+<tr>
+<td style="text-align: left">用户被冻结</td>
+<td style="text-align: left">40013</td>
+<td style="text-align: center">400</td>
+</tr>
+<tr>
+<td style="text-align: left">权限不正确</td>
+<td style="text-align: left">40014</td>
+<td style="text-align: center">400</td>
+</tr>
+<tr>
+<td style="text-align: left">系统错误</td>
+<td style="text-align: left">40015</td>
+<td style="text-align: center">400</td>
+</tr>
+<tr>
+<td style="text-align: left">用户必须绑定手机或者谷歌</td>
+<td style="text-align: left">40016</td>
+<td style="text-align: center">400</td>
+</tr>
+<tr>
+<td style="text-align: left">参数校验失败</td>
+<td style="text-align: left">40017</td>
+<td style="text-align: center">400</td>
+</tr>
+<tr>
+<td style="text-align: left">非法的ip请求</td>
+<td style="text-align: left">40018</td>
+<td style="text-align: center">400</td>
+</tr>
+</tbody></table>
+
+  </div>
+  <div class="dark-box">
+      <div class="lang-selector">
+            <a href="#" data-language-name="console">console</a>
+      </div>
+  </div>
+</div>
+</body>
+
+<script>
+    $(".con a").click(function(){
+        $(".con a").removeClass("selected");
+        $(this).addClass("selected")
+    });
+    $("#international").click(function(){
+        $this = $(this);
+        var currentUrl = window.location.href;
+        var index=currentUrl.indexOf("#");
+        currentUrl=currentUrl.substring(0,index);
+        if ($this.text() == 'English') {
+            window.location=currentUrl.replace(/\/zh/,"/en");
+        } else {
+            window.location=currentUrl.replace(/\/en/,"/zh");
+        }
+    });
+    var  currentUrl=window.location.href;
+    var isEn=currentUrl.indexOf('en/')>-1;
+    var isBroker=currentUrl.indexOf('broker/')>-1;
+    var isSpot=currentUrl.indexOf('spot/')>-1;
+    var isMix=currentUrl.indexOf('mix/')>-1;
+    var isMargin=currentUrl.indexOf('margin/')>-1;
+    var isCopyTrade=currentUrl.indexOf('copyTrade/')>-1;
+    var isLocal=currentUrl.indexOf('local')>-1;
+    var $international=$("#international");
+    var $search=$("#input-search");
+
+    var $Spot=$("#spot");
+        $Mix=$("#mix");
+    if(isBroker){
+        $Broker.addClass('selected');
+    }
+    if(isSpot){
+        $Spot.addClass('selected');
+    }
+    if(isMix){
+        $Mix.addClass('selected');
+    }
+    if(isMargin){
+         $Margin.addClass('selected');
+    }
+    if(isCopyTrade){
+         $CopyTrade.addClass('selected');
+    }
+
+    if(!isEn){
+        $Spot.html($Spot.attr('data-text'))
+        $Mix.html($Mix.attr('data-text'))
+
+        $international.html('English')
+    }else {
+        $international.html('简体中文')
+        $search.html('搜索');
+    }
+    if(isLocal){
+        if(isEn){
+            $Spot.attr('href','/en/spot/')
+            $Mix.attr('href','/en/mix/')
+        } else{
+            $Spot.attr('href','/zh/spot/')
+            $Mix.attr('href','/zh/mix/')
+        }
+
+    } else{
+        if(isEn){
+            $Spot.attr('href','/apidoc/en/spot/')
+            $Mix.attr('href','/apidoc/en/mix/')
+        } else{
+            $Spot.attr('href','/apidoc/zh/spot/')
+            $Mix.attr('href','/apidoc/zh/mix/')
+        }
+    }
+</script>
+
+</html>
