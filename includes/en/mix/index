@@ -716,6 +716,86 @@ If there is a large deviation between the local server time and the API server t
 <li>maintain  symbol is under maintenance</li>
 <li>off       offline</li>
 </ul>
+<h3 id='ordersource'>orderSource</h3>
+<table><thead>
+<tr>
+<th>Words</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>normal</td>
+<td>normal order</td>
+</tr>
+<tr>
+<td>market</td>
+<td>market order</td>
+</tr>
+<tr>
+<td>profit_market</td>
+<td>market profit order</td>
+</tr>
+<tr>
+<td>loss_market</td>
+<td>market loss order</td>
+</tr>
+<tr>
+<td>Trader_delegate</td>
+<td>trader copy trader</td>
+</tr>
+<tr>
+<td>trader_profit</td>
+<td>trader profit</td>
+</tr>
+<tr>
+<td>trader_loss</td>
+<td>trader loss</td>
+</tr>
+<tr>
+<td>reverse</td>
+<td>reverse order</td>
+</tr>
+<tr>
+<td>trader_reverse</td>
+<td>trader reverse order</td>
+</tr>
+<tr>
+<td>profit_limit</td>
+<td>limit profit order</td>
+</tr>
+<tr>
+<td>loss_limit</td>
+<td>limit  loss order</td>
+</tr>
+<tr>
+<td>liquidation</td>
+<td>liquidation order</td>
+</tr>
+<tr>
+<td>delivery_close_long</td>
+<td>delivery close long order</td>
+</tr>
+<tr>
+<td>delivery_close_short</td>
+<td>delivery close short order</td>
+</tr>
+<tr>
+<td>pos_profit_limit</td>
+<td>position limit profit order</td>
+</tr>
+<tr>
+<td>pos_profit_market</td>
+<td>position market profit order</td>
+</tr>
+<tr>
+<td>pos_loss_limit</td>
+<td>position limit loss order</td>
+</tr>
+<tr>
+<td>pos_loss_market</td>
+<td>position market loss order</td>
+</tr>
+</tbody></table>
 <h1 id='restapi'>RestAPI</h1><h2 id='market'>Market</h2><h3 id='get-all-symbols'>Get All Symbols</h3>
 <p>Limit rule: 20 times/1s (IP)</p>
 
@@ -871,6 +951,189 @@ If there is a large deviation between the local server time and the API server t
 <td style="text-align: left">prohibit create order time, &#39;-1&#39; means normal; other value means symbol is under maintenance, and is not allow to create order afterwards</td>
 </tr>
 </tbody></table>
+<h3 id='get-merged-depth-data'>Get merged depth data</h3>
+<p>Speed limit rule: 20 times/1s</p>
+
+<p><strong>HTTP Request</strong></p>
+
+<ul>
+<li>GET /api/mix/v1/market/merge-depth</li>
+</ul>
+
+<blockquote>
+<p>request example</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.coincatch.com/api/mix/v1/market/merge-depth?symbol=ETHUSDT_UMCBL&amp;precision=scale0&amp;limit=5"</span>
+</code></pre>
+<p><strong>request parameters</strong></p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">parameter name</th>
+<th style="text-align: left">Parameter Type</th>
+<th style="text-align: center">Required</th>
+<th style="text-align: center">describe</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">symbol</td>
+<td style="text-align: left">String</td>
+<td style="text-align: center">Yes</td>
+<td style="text-align: center">Trading pair name, for example: BTCUSDT_UMCBL</td>
+</tr>
+<tr>
+<td style="text-align: left">precision</td>
+<td style="text-align: left">String</td>
+<td style="text-align: center">No</td>
+<td style="text-align: center">Price accuracy, according to the selected accuracy as the step size to return the cumulative depth, enumeration value: scale0/scale1/scale2/scale3, scale0 is not merged, the default value, in general, scale1 is the merged depth of the transaction pair’s quotation accuracy*10, generally In this case, scale2 is the quotation precision *100, scale3 is the quotation precision *1000, and the precision corresponding to 0/1/2/3 is subject to the actual return parameter &quot;scale&quot;. The quotation precision of each trading pair is different, and some currencies The pair does not have scale2, and the request for a scale that does not exist for the currency pair will be processed according to the maximum scale. Example: A certain trading pair only has scale 0/1, and when scale2 is requested, it will be automatically reduced to scale1.</td>
+</tr>
+<tr>
+<td style="text-align: left">limit</td>
+<td style="text-align: left">String</td>
+<td style="text-align: center">No</td>
+<td style="text-align: center">Fixed gear enumeration value: 1/5/15/50/max, the default gear is 100. When the actual depth does not meet the limit, it will be returned according to the actual gear. Passing in max will return the maximum gear of the trading pair.</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>return data</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+  "code": "00000",
+  "msg": "success",
+  "requestTime": 1692761045039,
+  "data": {
+    "asks": [
+      [
+        1842.2,
+        0.100
+      ],
+      [
+        1842.3,
+        3.176
+      ],
+      [
+        1842.8,
+        7.428
+      ],
+      [
+        1843.3,
+        6.128
+      ],
+      [
+        1843.8,
+        2.747
+      ]
+    ],
+    "bids": [
+      [
+        1841.8,
+        0.519
+      ],
+      [
+        1841.3,
+        2.931
+      ],
+      [
+        1840.8,
+        8.622
+      ],
+      [
+        1840.3,
+        1.018
+      ],
+      [
+        1839.8,
+        4.112
+      ]
+    ],
+    "ts": "1692761045063",
+    "scale": "0.1",
+    "precision": "scale0",
+    "isMaxPrecision": "NO"
+  }
+}
+</code></pre>
+<p><strong>Return value description</strong></p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">parameter name</th>
+<th style="text-align: left">Parameter Type</th>
+<th style="text-align: center">field description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">asks</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: center">All buy orders at the current price, such as [&quot;38084.5&quot;,&quot;0.5&quot;], &quot;38084.5&quot; represents the depth price, and &quot;0.5&quot; represents the amount of base currency</td>
+</tr>
+<tr>
+<td style="text-align: left">bids</td>
+<td style="text-align: left">Array</td>
+<td style="text-align: center">All sell orders at the current price</td>
+</tr>
+<tr>
+<td style="text-align: left">precision</td>
+<td style="text-align: left">String</td>
+<td style="text-align: center">Current gear, for example: scale 1</td>
+</tr>
+<tr>
+<td style="text-align: left">scale</td>
+<td style="text-align: left">String</td>
+<td style="text-align: center">The actual precision value, for example: 0.1</td>
+</tr>
+<tr>
+<td style="text-align: left">isMaxPrecision</td>
+<td style="text-align: left">String</td>
+<td style="text-align: center">YES means it is already the maximum precision, NO is not the maximum precision</td>
+</tr>
+<tr>
+<td style="text-align: left">ts</td>
+<td style="text-align: left">String</td>
+<td style="text-align: center">The time corresponding to the current depth</td>
+</tr>
+</tbody></table>
+
+<p>&npsp;</p>
+
+<p>&npsp;</p>
+
+<p>&npsp;</p>
+
+<p>&npsp;</p>
+
+<p>&npsp;</p>
+
+<p>&npsp;</p>
+
+<p>&npsp;</p>
+
+<p>&npsp;</p>
+
+<p>&npsp;</p>
+
+<p>&npsp;</p>
+
+<p>&npsp;</p>
+
+<p>&npsp;</p>
+
+<p>&npsp;</p>
+
+<p>&npsp;</p>
+
+<p>&npsp;</p>
+
+<p>&npsp;</p>
+
+<p>&npsp;</p>
+
+<p>&npsp;</p>
+
+<p>&npsp;</p>
+
+<p>&npsp;</p>
 <h3 id='get-depth'>Get Depth</h3>
 <p>Limit rule: 20 times/1s (IP)</p>
 
@@ -2324,28 +2587,30 @@ If there is a large deviation between the local server time and the API server t
 <p>Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"00000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
-        </span><span class="s2">"marginCoin"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"locked"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"available"</span><span class="p">:</span><span class="mf">13168.86110692</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"crossMaxAvailable"</span><span class="p">:</span><span class="mf">13168.86110692</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"fixedMaxAvailable"</span><span class="p">:</span><span class="mf">13168.86110692</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"maxTransferOut"</span><span class="p">:</span><span class="mf">13168.86110692</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"equity"</span><span class="p">:</span><span class="mf">13178.86110692</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"usdtEquity"</span><span class="p">:</span><span class="mf">13178.861106922</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"btcEquity"</span><span class="p">:</span><span class="mf">0.344746495477</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"crossRiskRate"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"crossMarginLeverage"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"fixedLongLeverage"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"fixedShortLeverage"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"marginMode"</span><span class="p">:</span><span class="s2">"crossed"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"holdMode"</span><span class="p">:</span><span class="s2">"double_hold"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"unrealizedPL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"bonus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"msg"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"requestTime"</span><span class="p">:</span><span class="mi">1627292199523</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"00000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"marginCoin"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"locked"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"available"</span><span class="p">:</span><span class="mf">13168.86110692</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"crossMaxAvailable"</span><span class="p">:</span><span class="mf">13168.86110692</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fixedMaxAvailable"</span><span class="p">:</span><span class="mf">13168.86110692</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"maxTransferOut"</span><span class="p">:</span><span class="mf">13168.86110692</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"equity"</span><span class="p">:</span><span class="mf">13178.86110692</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"usdtEquity"</span><span class="p">:</span><span class="mf">13178.861106922</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"btcEquity"</span><span class="p">:</span><span class="mf">0.344746495477</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"crossRiskRate"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"crossMarginLeverage"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fixedLongLeverage"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fixedShortLeverage"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"marginMode"</span><span class="p">:</span><span class="s2">"crossed"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"holdMode"</span><span class="p">:</span><span class="s2">"double_hold"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"unrealizedPL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"crossedUnrealizedPL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isolatedUnrealizedPL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"bonus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"msg"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"requestTime"</span><span class="p">:</span><span class="mi">1627292199523</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><strong>Response Description</strong></p>
@@ -2418,7 +2683,15 @@ If there is a large deviation between the local server time and the API server t
 </tr>
 <tr>
 <td style="text-align: left">unrealizedPL</td>
-<td style="text-align: left">unrealized profit and loss</td>
+<td style="text-align: left">unrealized profit and loss at crossed <a href="#marginmode">margin mode</a>, unit in USDT</td>
+</tr>
+<tr>
+<td style="text-align: left">crossedUnrealizedPL</td>
+<td style="text-align: left">current symbol unrealized profit and loss at crossed <a href="#marginmode">margin mode</a>, unit in USDT</td>
+</tr>
+<tr>
+<td style="text-align: left">isolatedUnrealizedPL</td>
+<td style="text-align: left">current symbol unrealized profit and loss at isolated <a href="#marginmode">margin mode</a>, unit in USDT</td>
 </tr>
 <tr>
 <td style="text-align: left">bonus</td>
@@ -3088,51 +3361,53 @@ If there is a large deviation between the local server time and the API server t
 <p>Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"requestTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"marginCoin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_UMCBL"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"holdSide"</span><span class="p">:</span><span class="w"> </span><span class="s2">"long"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"openDelegateCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"margin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"locked"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"achievedProfits"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"averageOpenPrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"marginMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"crossed"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"holdMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"double_hold"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"unrealizedPL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"liquidationPrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"keepMarginRate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"marketPrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"cTime"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"marginCoin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_UMCBL"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"holdSide"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"openDelegateCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"margin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"locked"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"achievedProfits"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"averageOpenPrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"marginMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"crossed"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"holdMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"double_hold"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"unrealizedPL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"liquidationPrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"keepMarginRate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"marketPrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"cTime"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"requestTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"marginCoin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_UMCBL"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"holdSide"</span><span class="p">:</span><span class="w"> </span><span class="s2">"long"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"openDelegateCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"margin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"autoMargin"</span><span class="p">:</span><span class="s2">"off"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"locked"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"achievedProfits"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"averageOpenPrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"marginMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"crossed"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"holdMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"double_hold"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unrealizedPL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"liquidationPrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"keepMarginRate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"marketPrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cTime"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"marginCoin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_UMCBL"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"holdSide"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"openDelegateCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"margin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"autoMargin"</span><span class="p">:</span><span class="s2">"off"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"locked"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"achievedProfits"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"averageOpenPrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"marginMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"crossed"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"holdMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"double_hold"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unrealizedPL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"liquidationPrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"keepMarginRate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"marketPrice"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cTime"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><strong>Response Description</strong></p>
@@ -3162,6 +3437,10 @@ If there is a large deviation between the local server time and the API server t
 <tr>
 <td style="text-align: left">margin</td>
 <td style="text-align: left">Margin quantity (margin currency)</td>
+</tr>
+<tr>
+<td style="text-align: left">autoMargin</td>
+<td style="text-align: left">Auto suppliment margin: <code>off</code> <code>on</code></td>
 </tr>
 <tr>
 <td style="text-align: left">available</td>
@@ -3209,7 +3488,7 @@ If there is a large deviation between the local server time and the API server t
 </tr>
 <tr>
 <td style="text-align: left">marketPrice</td>
-<td style="text-align: left">market  price</td>
+<td style="text-align: left">mark (typo) price</td>
 </tr>
 <tr>
 <td style="text-align: left">cTime</td>
@@ -3264,51 +3543,55 @@ If there is a large deviation between the local server time and the API server t
 <p>Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"00000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"marginCoin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_UMCBL"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"holdSide"</span><span class="p">:</span><span class="w"> </span><span class="s2">"long"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"openDelegateCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"margin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"locked"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"achievedProfits"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"averageOpenPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"marginMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"crossed"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"holdMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"double_hold"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"unrealizedPL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"liquidationPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"keepMarginRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.004"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"marketPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28038.69"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"cTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1669362331867"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"marginCoin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_UMCBL"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"holdSide"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"openDelegateCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"margin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"locked"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"achievedProfits"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"averageOpenPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"marginMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"crossed"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"holdMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"double_hold"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"unrealizedPL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"liquidationPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"keepMarginRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.004"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"marketPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28038.69"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"cTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1669362331868"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"msg"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"requestTime"</span><span class="p">:</span><span class="mi">1627293612502</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"00000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"marginCoin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_UMCBL"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"holdSide"</span><span class="p">:</span><span class="w"> </span><span class="s2">"long"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"openDelegateCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"margin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"autoMargin"</span><span class="p">:</span><span class="s2">"off"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"locked"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"achievedProfits"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"averageOpenPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"marginMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"crossed"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"holdMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"double_hold"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unrealizedPL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"liquidationPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"keepMarginRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.004"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"marketPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28038.69"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1669362331867"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"uTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1626232130664"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"marginCoin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_UMCBL"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"holdSide"</span><span class="p">:</span><span class="w"> </span><span class="s2">"short"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"openDelegateCount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"margin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"autoMargin"</span><span class="p">:</span><span class="s2">"off"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"available"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"locked"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"achievedProfits"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"averageOpenPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"marginMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"crossed"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"holdMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"double_hold"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unrealizedPL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"liquidationPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"keepMarginRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.004"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"marketPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28038.69"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1669362331868"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"uTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1626232130664"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"msg"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"requestTime"</span><span class="p">:</span><span class="mi">1627293612502</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><strong>Response Description</strong></p>
@@ -3338,6 +3621,10 @@ If there is a large deviation between the local server time and the API server t
 <tr>
 <td style="text-align: left">margin</td>
 <td style="text-align: left">Margin quantity (margin currency)</td>
+</tr>
+<tr>
+<td style="text-align: left">autoMargin</td>
+<td style="text-align: left">Auto suppliment margin: <code>off</code> <code>on</code></td>
 </tr>
 <tr>
 <td style="text-align: left">available</td>
@@ -3389,6 +3676,10 @@ If there is a large deviation between the local server time and the API server t
 </tr>
 <tr>
 <td style="text-align: left">cTime</td>
+<td style="text-align: left">Last position create time Timestamp milliseconds</td>
+</tr>
+<tr>
+<td style="text-align: left">uTime</td>
 <td style="text-align: left">Last update time Timestamp milliseconds</td>
 </tr>
 </tbody></table>
@@ -3547,6 +3838,8 @@ If there is a large deviation between the local server time and the API server t
 </tr>
 </tbody></table>
 <h3 id='get-business-account-bill'>Get Business Account Bill</h3>
+<p>Records within 90 days</p>
+
 <p>Limit rule:  5/sec (uid)</p>
 
 <p><strong>HTTP Request</strong></p>
@@ -4872,40 +5165,41 @@ Use <code>buy_single</code> when original position <code>side</code> is <code>se
 <p>Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"00000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
-      </span><span class="s2">"nextFlag"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"endId"</span><span class="p">:</span><span class="s2">"802355881591844864"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"orderList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTCUSDT_UMCBL"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"size"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"orderId"</span><span class="p">:</span><span class="s2">"802382049422487552"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"clientOid"</span><span class="p">:</span><span class="s2">"RFIut#1627028708738"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"filledQty"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"fee"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">23999.3</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"priceAvg"</span><span class="p">:</span><span class="w"> </span><span class="mf">23999.00</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"state"</span><span class="p">:</span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"side"</span><span class="p">:</span><span class="s2">"open_long"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"timeInForce"</span><span class="p">:</span><span class="s2">"normal"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"totalProfits"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"posSide"</span><span class="p">:</span><span class="s2">"long"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"marginCoin"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"filledAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">48.4520</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"marginMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fixed"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"reduceOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"enterPointSource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"tradeSide"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy_single"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"holdMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"single_hold"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"orderType"</span><span class="p">:</span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"cTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1678779464831"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"uTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1678779464891"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"msg"</span><span class="p">:</span><span class="s2">"success"</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"00000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"nextFlag"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"endId"</span><span class="p">:</span><span class="s2">"802355881591844864"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"orderList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTCUSDT_UMCBL"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"size"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderId"</span><span class="p">:</span><span class="s2">"802382049422487552"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"clientOid"</span><span class="p">:</span><span class="s2">"RFIut#1627028708738"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"filledQty"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fee"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">23999.3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"priceAvg"</span><span class="p">:</span><span class="w"> </span><span class="mf">23999.00</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"state"</span><span class="p">:</span><span class="s2">"filled"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"side"</span><span class="p">:</span><span class="s2">"open_long"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"timeInForce"</span><span class="p">:</span><span class="s2">"normal"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalProfits"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"posSide"</span><span class="p">:</span><span class="s2">"long"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"marginCoin"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"filledAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">48.4520</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"marginMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fixed"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"reduceOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"enterPointSource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tradeSide"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy_single"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"holdMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"single_hold"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderType"</span><span class="p">:</span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orderSource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"cTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1678779464831"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"uTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1678779464891"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"msg"</span><span class="p">:</span><span class="s2">"success"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><strong>Response Description</strong></p>
@@ -5005,6 +5299,10 @@ Use <code>buy_single</code> when original position <code>side</code> is <code>se
 <td style="text-align: left"><a href="#ordertype">Order type</a></td>
 </tr>
 <tr>
+<td style="text-align: left">orderSource</td>
+<td style="text-align: left"><a href="#ordersource">orderSource</a></td>
+</tr>
+<tr>
 <td style="text-align: left">cTime</td>
 <td style="text-align: left">Created update time</td>
 </tr>
@@ -5061,31 +5359,39 @@ Use <code>buy_single</code> when original position <code>side</code> is <code>se
 <p>Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"00000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
-      </span><span class="s2">"nextFlag"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"endId"</span><span class="p">:</span><span class="s2">"802355881591844864"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"orderList"</span><span class="p">:[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTCUSDT_UMCBL"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"size"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"orderId"</span><span class="p">:</span><span class="s2">"802382049422487552"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"clientOid"</span><span class="p">:</span><span class="s2">"RFIut#1627028708738"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"filledQty"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"fee"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"price"</span><span class="p">:</span><span class="mf">23999.3</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"state"</span><span class="p">:</span><span class="s2">"canceled"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"side"</span><span class="p">:</span><span class="s2">"open_long"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"timeInForce"</span><span class="p">:</span><span class="s2">"normal"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"totalProfits"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"posSide"</span><span class="p">:</span><span class="s2">"long"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"marginCoin"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"orderType"</span><span class="p">:</span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"ctime"</span><span class="p">:</span><span class="mi">1627028708807</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">]</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"msg"</span><span class="p">:</span><span class="s2">"success"</span><span class="w">
+  </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"requestTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1684852347068</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTCUSDT_UMCBL"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.050</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1044911928892862465"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"clientOid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"xx005"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"filledQty"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">0E-8</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"price"</span><span class="p">:</span><span class="w"> </span><span class="mf">25500.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open_long"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"timeInForce"</span><span class="p">:</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"totalProfits"</span><span class="p">:</span><span class="w"> </span><span class="mi">0E-8</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"posSide"</span><span class="p">:</span><span class="w"> </span><span class="s2">"long"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"marginCoin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"presetTakeProfitPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">33800.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"presetStopLossPrice"</span><span class="p">:</span><span class="w"> </span><span class="mf">11300.00</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"filledAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0000</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"leverage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"marginMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"crossed"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"reduceOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"enterPointSource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"tradeSide"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open_long"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"holdMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"double_hold"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"orderSource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"normal"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1684852338057"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"uTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1684852338057"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><strong>Response Description</strong></p>
@@ -5153,7 +5459,51 @@ Use <code>buy_single</code> when original position <code>side</code> is <code>se
 <td style="text-align: left"><a href="#ordertype">Order type</a></td>
 </tr>
 <tr>
+<td style="text-align: left">presetTakeProfitPrice</td>
+<td style="text-align: left">Take profit price</td>
+</tr>
+<tr>
+<td style="text-align: left">presetStopLossPrice</td>
+<td style="text-align: left">Stop Loss Price</td>
+</tr>
+<tr>
+<td style="text-align: left">filledAmount</td>
+<td style="text-align: left">filledAmount</td>
+</tr>
+<tr>
+<td style="text-align: left">leverage</td>
+<td style="text-align: left">leverage</td>
+</tr>
+<tr>
+<td style="text-align: left">marginMode</td>
+<td style="text-align: left"><a href="#marginmode">marginMode</a></td>
+</tr>
+<tr>
+<td style="text-align: left">reduceOnly</td>
+<td style="text-align: left">reduceOnly</td>
+</tr>
+<tr>
+<td style="text-align: left">enterPointSource</td>
+<td style="text-align: left"><a href="#enterpointsource">enterPointSource</a></td>
+</tr>
+<tr>
+<td style="text-align: left">tradeSide</td>
+<td style="text-align: left"><a href="#tradeside">tradeSide</a></td>
+</tr>
+<tr>
+<td style="text-align: left">holdMode</td>
+<td style="text-align: left"><a href="#holdmode">holdMode</a></td>
+</tr>
+<tr>
+<td style="text-align: left">orderSource</td>
+<td style="text-align: left"><a href="#ordersource">orderSource</a></td>
+</tr>
+<tr>
 <td style="text-align: left">cTime</td>
+<td style="text-align: left">Created time</td>
+</tr>
+<tr>
+<td style="text-align: left">uTime</td>
 <td style="text-align: left">Last update time</td>
 </tr>
 </tbody></table>
@@ -7303,16 +7653,22 @@ Use <code>buy_single</code> when original position <code>side</code> is <code>se
 </tr>
 </thead><tbody>
 <tr>
+<td style="text-align: left">productType</td>
+<td style="text-align: left">String</td>
+<td style="text-align: center">No</td>
+<td style="text-align: center"><a href="#producttype">productType</a></td>
+</tr>
+<tr>
 <td style="text-align: left">symbol</td>
 <td style="text-align: left">String</td>
-<td style="text-align: center">Yes</td>
+<td style="text-align: center">No</td>
 <td style="text-align: center">Symbol Id (Must be capitalized)</td>
 </tr>
 <tr>
 <td style="text-align: left">startTime</td>
 <td style="text-align: left">String</td>
 <td style="text-align: center">Yes</td>
-<td style="text-align: center">Start time, milliseconds</td>
+<td style="text-align: center">Start time, milliseconds (For Managed Sub-Account, the StartTime cannot be earlier than the binding time)</td>
 </tr>
 <tr>
 <td style="text-align: left">endTime</td>
@@ -7355,33 +7711,37 @@ Use <code>buy_single</code> when original position <code>side</code> is <code>se
 <p>Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"00000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"requestTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1693968259096</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"orderId"</span><span class="p">:</span><span class="s2">"803521986049314816"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"clientOid"</span><span class="p">:</span><span class="s2">"xxx001"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"executeOrderId"</span><span class="p">:</span><span class="s2">"84271931884910"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="s2">"BTCUSDT_UMCBL"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"marginCoin"</span><span class="p">:</span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"size"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"executePrice"</span><span class="p">:</span><span class="s2">"38923.1"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"triggerPrice"</span><span class="p">:</span><span class="s2">"45000.3"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"not_trigger"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"orderType"</span><span class="p">:</span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"planType"</span><span class="p">:</span><span class="s2">"normal_plan"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"side"</span><span class="p">:</span><span class="s2">"open_long"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"triggerType"</span><span class="p">:</span><span class="s2">"fill_price"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"presetTakeProfitPrice"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"presetTakeLossPrice"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rangeRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"enterPointSource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"tradeSide"</span><span class="p">:</span><span class="w"> </span><span class="s2">"buy_single"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1048210602999750657"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"clientOid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1048210602999750656"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"executeOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1048508364888899593"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"symbol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SBTCSUSDT_SUMCBL"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"marginCoin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUSDT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"executePrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27500"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"triggerPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27200"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"triggered"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orderType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limit"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"planType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"normal_plan"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"side"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell_single"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"triggerType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"market_price"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"presetTakeProfitPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"presetTakeLossPrice"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rangeRate"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"enterPointSource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tradeSide"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sell_single"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"holdMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"single_hold"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"ctime"</span><span class="p">:</span><span class="s2">"1627300490867"</span><span class="w">
+            </span><span class="s2">"reduceOnly"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"executeTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1685709795259"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"executeSize"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1685638803243"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"uTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1685709795259"</span><span class="w">
         </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"msg"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"requestTime"</span><span class="p">:</span><span class="mi">1627354109502</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><strong>Response Description</strong></p>
@@ -7415,10 +7775,6 @@ Use <code>buy_single</code> when original position <code>side</code> is <code>se
 <tr>
 <td style="text-align: left">size</td>
 <td style="text-align: left">Order size</td>
-</tr>
-<tr>
-<td style="text-align: left">executeSize</td>
-<td style="text-align: left">Execute Size</td>
 </tr>
 <tr>
 <td style="text-align: left">executePrice</td>
@@ -7473,8 +7829,24 @@ Use <code>buy_single</code> when original position <code>side</code> is <code>se
 <td style="text-align: left"><a href="#holdmode">Hold Mode</a></td>
 </tr>
 <tr>
+<td style="text-align: left">reduceOnly</td>
+<td style="text-align: left">Is reduce only</td>
+</tr>
+<tr>
+<td style="text-align: left">executeTime</td>
+<td style="text-align: left">Execute Time</td>
+</tr>
+<tr>
+<td style="text-align: left">executeSize</td>
+<td style="text-align: left">Execute Size</td>
+</tr>
+<tr>
 <td style="text-align: left">ctime</td>
 <td style="text-align: left">Order creation time</td>
+</tr>
+<tr>
+<td style="text-align: left">utime</td>
+<td style="text-align: left">Order Update time</td>
 </tr>
 </tbody></table>
 <h1 id='websocketapi'>WebSocketAPI</h1><h2 id='overview'>Overview</h2>
@@ -7598,7 +7970,7 @@ Use <code>buy_single</code> when original position <code>side</code> is <code>se
     </span><span class="s2">"op"</span><span class="p">:</span><span class="s2">"login"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"args"</span><span class="p">:[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"apiKey"</span><span class="p">:</span><span class="s2">"bg_573af5eca856acd91c230da294ce2105"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"apiKey"</span><span class="p">:</span><span class="s2">"cc_573af5eca856acd91c230da294ce2105"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"passphrase"</span><span class="p">:</span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="s2">"1538054050"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"sign"</span><span class="p">:</span><span class="s2">"8RCOqCJAhhEh4PWcZB/96QojLDqMAg4qNynIixFzS3E="</span><span class="w">
