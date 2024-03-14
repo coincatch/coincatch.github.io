@@ -502,6 +502,9 @@
                         <a href="#get-withdraw-list" class="toc-h3 toc-link" data-title="Get Withdraw list">Get Withdraw list</a>
                       </li>
                       <li>
+                          <a href="#get-withdraw-list-v2" class="toc-h3 toc-link" data-title="Get Withdraw list v2">Get Withdraw list v2</a>
+                      </li>
+                      <li>
                         <a href="#get-deposit-list" class="toc-h3 toc-link" data-title="Get Deposit List">Get Deposit List</a>
                       </li>
                   </ul>
@@ -673,6 +676,8 @@ clipboard.on('error', function(e) {
 <h1 id='welcome'>Welcome</h1>
 <p>Welcome to CoinCatch ApiDoc! Click <a href='#introduction'>here</a> for quick start</p>
 <h1 id='update-log'>Update Log</h1>
+<p><strong>14/03/2024</strong>
+  - New interface <a href="#get-withdraw-list-v2">Get Withdraw list v2</a></p>
 <p><strong>28/12/2023</strong>
 - New interface <a href="#market">Market</a>
 - New interface <a href="#trade">Trade</a></p>
@@ -3030,6 +3035,182 @@ microtime(true) * 1000;
 <li>success </li>
 </ul></li>
 </ul>
+<h3 id='get-withdraw-list-v2'>Get Withdraw list v2</h3>
+<p>Rate Limit：20/1s (Uid)</p>
+
+<p><strong>HTTP Request</strong></p>
+
+<ul>
+  <li>GET /api/spot/v1/wallet/withdrawal-list-v2</li>
+</ul>
+
+<p><strong>Request Parameter</strong></p>
+
+<table><thead>
+<tr>
+  <th>Parameter</th>
+  <th>Type</th>
+  <th>Required</th>
+  <th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+  <td>coin</td>
+  <td>String</td>
+  <td>No</td>
+  <td>currency</td>
+</tr>
+<tr>
+  <td>clientOid</td>
+  <td>String</td>
+  <td>No</td>
+  <td>clientOid</td>
+</tr>
+<tr>
+    <td>orderId</td>
+    <td>String</td>
+    <td>No</td>
+    <td>The response orderId</td>
+</tr>
+<tr>
+  <td>startTime</td>
+  <td>String</td>
+  <td>Yes</td>
+  <td>start Time (timestamp ms)</td>
+</tr>
+<tr>
+  <td>endTime</td>
+  <td>String</td>
+  <td>Yes</td>
+  <td>end Time(timestamp ms)</td>
+</tr>
+<tr>
+  <td>idLessThan</td>
+  <td>String</td>
+  <td>No</td>
+  <td>Requests the content on the page before this ID (older data), the value input should be the orderId of the corresponding interface.</td>
+</tr>
+<tr>
+  <td>limit</td>
+  <td>String</td>
+  <td>No</td>
+  <td>Number of entries per page The default value is 20 and the maximum value is 100</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+  <p>Request Example</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.coincatch.com/api/spot/v1/wallet/withdrawal-list-v2?coin=USDT&amp;clientOid=123&amp;startTime=1659036670000&amp;endTime=1659076670000"</span> <span class="se">\</span>
+-H <span class="s2">"ACCESS-KEY:you apiKey"</span> <span class="se">\</span>
+-H <span class="s2">"ACCESS-SIGN:*******"</span> <span class="se">\</span>
+-H <span class="s2">"ACCESS-PASSPHRASE:*****"</span> <span class="se">\</span>
+-H <span class="s2">"ACCESS-TIMESTAMP:1659076670000"</span> <span class="se">\</span>
+-H <span class="s2">"locale:en-US"</span> <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span>
+</code></pre>
+<blockquote>
+  <p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"00000"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"requestTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1654507973411</span><span class="p">,</span><span class="w">
+</span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"orderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"912533114861326336"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tradeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"912533114861326336"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"coin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USDT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"clientOid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"withdraw"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.00000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7713789662"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"chain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"erc20"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"confirm"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tag"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xxxxxxxxxxxxxxxxxxx"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"dest"</span><span class="p">:</span><span class="w"> </span><span class="kc">"on_chain"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1653290769222"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"uTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1653290769222"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>Response Description</strong></p>
+
+<table><thead>
+<tr>
+  <th>Parameter</th>
+  <th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+  <td>orderId</td>
+  <td>order Id</td>
+</tr>
+<tr>
+  <td>tradeId</td>
+  <td>trade Id</td>
+</tr>
+<tr>
+  <td>coin</td>
+  <td>currency</td>
+</tr>
+<tr>
+  <td>clientOid</td>
+  <td>clientOid</td>
+</tr>
+<tr>
+  <td>type</td>
+  <td>type</td>
+</tr>
+<tr>
+  <td>size</td>
+  <td>withdraw amount</td>
+</tr>
+<tr>
+  <td>status</td>
+  <td>status</td>
+</tr>
+<tr>
+  <td>toAddress</td>
+  <td>Withdraw address</td>
+</tr>
+<tr>
+  <td>fee</td>
+  <td>Withdraw fee</td>
+</tr>
+<tr>
+  <td>chain</td>
+  <td>Withdraw chain</td>
+</tr>
+<tr>
+  <td>confirm</td>
+  <td>confirm times for withdraw</td>
+</tr>
+<tr>
+  <td>tag</td>
+  <td>tag</td>
+</tr>
+<tr>
+    <td>dest</td>
+    <td>Withdrawal of coins</br>on_chain: on chain</br>internal_transfer: internal_transfer</br>inner_address_transfer: inner address transfe</td>
+</tr>
+<tr>
+    <td>fromAddress</td>
+    <td>coin-raising</td>
+</tr>
+<tr>
+  <td>cTime</td>
+  <td>create time</td>
+</tr>
+<tr>
+  <td>uTime</td>
+  <td>update time</td>
+</tr>
+</tbody></table>
 <h3 id='get-deposit-list'>Get Deposit List</h3>
 <p>Rate Limit：20/1s (Uid)</p>
 
