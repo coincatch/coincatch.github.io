@@ -335,6 +335,7 @@
     <ul class="con">
          <li><a id="spot" data-text="现货" >Spot</a></li>
          <li><a id="mix" data-text="专业合约" >FuturesⓂ(USDT/Coin)</a></li>
+         <li><a id="copyTrade" data-text="跟单交易" >Copy Trade</a></li>
     </ul>
   </div>
   <a class="international" id="international" href="javascript:void(0);">English</a>
@@ -11915,6 +11916,7 @@ channel books15 return 15 bids index from 5 to 19(index 19 is bid1), and return 
 
     var $Spot=$("#spot");
         $Mix=$("#mix");
+        $CopyTrade=$("#copyTrade");
     if(isBroker){
         $Broker.addClass('selected');
     }
@@ -11934,7 +11936,7 @@ channel books15 return 15 bids index from 5 to 19(index 19 is bid1), and return 
     if(!isEn){
         $Spot.html($Spot.attr('data-text'))
         $Mix.html($Mix.attr('data-text'))
-
+        $CopyTrade.html($CopyTrade.attr('data-text'))
         $international.html('English')
     }else {
         $international.html('简体中文')
@@ -11944,18 +11946,22 @@ channel books15 return 15 bids index from 5 to 19(index 19 is bid1), and return 
         if(isEn){
             $Spot.attr('href','/en/spot/')
             $Mix.attr('href','/en/mix/')
+            $CopyTrade.attr('href','/en/copyTrade/')
         } else{
             $Spot.attr('href','/zh/spot/')
             $Mix.attr('href','/zh/mix/')
+            $CopyTrade.attr('href','/zh/copyTrade/')
         }
 
     } else{
         if(isEn){
             $Spot.attr('href','/github.io/en/spot/')
             $Mix.attr('href','/github.io/en/mix/')
+            $CopyTrade.attr('href','/github.io/en/copyTrade/')
         } else{
             $Spot.attr('href','/github.io/zh/spot/')
             $Mix.attr('href','/github.io/zh/mix/')
+            $CopyTrade.attr('href','/github.io/zh/copyTrade/')
         }
     }
 </script>
