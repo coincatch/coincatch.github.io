@@ -502,6 +502,9 @@
                         <a href="#k" class="toc-h3 toc-link" data-title="获取K线数据">获取K线数据</a>
                       </li>
                       <li>
+                          <a href="#history-kline" class="toc-h3 toc-link" data-title="获取历史K线数据">获取历史K线数据</a>
+                      </li>
+                      <li>
                         <a href="#b9d4674af5" class="toc-h3 toc-link" data-title="获取币种指数">获取币种指数</a>
                       </li>
                       <li>
@@ -2742,6 +2745,213 @@ Signature = base64.encode(Signature)
 <li>1Wutc (UTC0 1 week)</li>
 <li>1Mutc (UTC0 1 month)</li>
 </ul>
+
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+<h3 id='history-kline'>获取合约历史K线数据</h3>
+<p>限速规则: 20次/1s (IP)</p>
+
+<p><strong>HTTP请求</strong></p>
+
+<ul>
+  <li>GET /api/mix/v1/market/history-candles</li>
+</ul>
+
+<p>查询历史k线数据，最大返回200条数据</p>
+
+<p><strong>请求参数(Request Param)</strong></p>
+
+<table><thead>
+<tr>
+  <th style="text-align: left">参数名</th>
+  <th style="text-align: left">参数类型</th>
+  <th style="text-align: center">是否必须</th>
+  <th style="text-align: center">描述</th>
+</tr>
+</thead><tbody>
+<tr>
+  <td style="text-align: left">symbol</td>
+  <td style="text-align: left">String</td>
+  <td style="text-align: center">是</td>
+  <td style="text-align: center">产品ID 必须大写</td>
+</tr>
+<tr>
+  <td style="text-align: left">granularity</td>
+  <td style="text-align: left">String</td>
+  <td style="text-align: center">是</td>
+  <td style="text-align: center">k线类别</td>
+</tr>
+<tr>
+  <td style="text-align: left">startTime</td>
+  <td style="text-align: left">String</td>
+  <td style="text-align: center">是</td>
+  <td style="text-align: center">开始时间（时间戳毫秒，大于等于），根据granularity向下取整, 即granularity=1m时： 1672410799436(2022-12-30 22:33:19) 向下取整为 1672410780000 (2022-12-30 22:33:00)</td>
+</tr>
+<tr>
+  <td style="text-align: left">endTime</td>
+  <td style="text-align: left">String</td>
+  <td style="text-align: center">是</td>
+  <td style="text-align: center">结束时间（时间戳毫秒，小于等于），根据granularity向下取整, 即granularity=1m时： 1672410799436(2022-12-30 22:33:19) 向下取整为 1672408800000 (2022-12-30 22:00:00)</td>
+</tr>
+<tr>
+  <td style="text-align: left">limit</td>
+  <td style="text-align: left">String</td>
+  <td style="text-align: center">否</td>
+  <td style="text-align: center">默认 100, 最大 200</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+  <p>请求示例</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://api.coincatch.com/api/mix/v1/market/history-candles?symbol=BTCUSDT_UMCBL&granularity=1m&startTime=1740466881000&endTime=1740467361227&limit=10"</span>
+</code></pre>
+<blockquote>
+  <p>返回数据</p>
+</blockquote>
+      <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"1627008780000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"24016"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"24016"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"24016"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"24016"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"0"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"1627008840000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"24016"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"24016"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"24016"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"24016"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"0"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p><strong>返回值说明</strong></p>
+
+<table><thead>
+<tr>
+  <th style="text-align: left">返回字段</th>
+  <th>Index</th>
+</tr>
+</thead><tbody>
+<tr>
+  <td style="text-align: left">时间戳</td>
+  <td>0</td>
+</tr>
+<tr>
+  <td style="text-align: left">开盘价</td>
+  <td>1</td>
+</tr>
+<tr>
+  <td style="text-align: left">最高价</td>
+  <td>2</td>
+</tr>
+<tr>
+  <td style="text-align: left">最低价</td>
+  <td>3</td>
+</tr>
+<tr>
+  <td style="text-align: left">收盘价，最新一个收盘价可能还在持续更新，请订阅<a href="#candlesticks-channel">websocket</a>跟踪最新价</td>
+  <td>4</td>
+</tr>
+<tr>
+  <td style="text-align: left">交易币成交量</td>
+  <td>5</td>
+</tr>
+<tr>
+  <td style="text-align: left">计价币成交量</td>
+  <td>6</td>
+</tr>
+</tbody></table>
+
+<p><strong>granularity(candles interval)</strong></p>
+
+<ul>
+  <li>1m(1minute)</li>
+  <li>3m(3minute)</li>
+  <li>5m(5minute)</li>
+  <li>15m(15minute)</li>
+  <li>30m(30minute)</li>
+  <li>1H(1hour)</li>
+  <li>2H (2hour)</li>
+  <li>4H (4hour)</li>
+  <li>6H (6hour)</li>
+  <li>12H (12hour)</li>
+  <li>1D (1day)</li>
+  <li>3D (3day)</li>
+  <li>1W(1week)</li>
+  <li>1M (1month)</li>
+  <li>6Hutc (UTC0 6hour)</li>
+  <li>12Hutc (UTC0 12hour) </li>
+  <li>1Dutc  (UTC0 1day)</li>
+  <li>3Dutc (UTC0 3day)</li>
+  <li>1Wutc (UTC0 1 week)</li>
+  <li>1Mutc (UTC0 1 month)</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+
 <h3 id='b9d4674af5'>获取币种指数</h3>
 <p>限速规则: 20次/1s (IP)</p>
 
